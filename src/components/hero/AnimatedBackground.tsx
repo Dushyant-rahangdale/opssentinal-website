@@ -19,7 +19,7 @@ function FloatingParticles() {
             {particles.map((particle) => (
                 <motion.div
                     key={particle.id}
-                    className="absolute rounded-full bg-accent-emerald/20"
+                    className="absolute rounded-full bg-sky-200/20"
                     style={{
                         left: `${particle.x}%`,
                         top: `${particle.y}%`,
@@ -45,7 +45,7 @@ function FloatingParticles() {
 // Animated grid lines
 function AnimatedGrid() {
     return (
-        <div className="absolute inset-0 grid-background opacity-50" />
+        <div className="absolute inset-0 grid-background opacity-20" />
     );
 }
 
@@ -53,16 +53,17 @@ function AnimatedGrid() {
 function GlowingOrbs() {
     return (
         <>
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-emerald/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent-cyan/10 rounded-full blur-3xl" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-blue/5 rounded-full blur-3xl" />
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/25 rounded-full blur-3xl" />
+            <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-sky-400/20 rounded-full blur-3xl" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[640px] h-[640px] bg-indigo-500/15 rounded-full blur-3xl" />
         </>
     );
 }
 
 export function AnimatedBackground() {
     return (
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+            <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
             <AnimatedGrid />
             <GlowingOrbs />
             <FloatingParticles />

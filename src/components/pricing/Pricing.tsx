@@ -18,7 +18,7 @@ const features = [
 
 export function Pricing() {
     return (
-        <section id="pricing" className="relative py-24 bg-background-secondary">
+        <section id="pricing" className="relative py-24 section-alt">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <motion.div
@@ -27,7 +27,7 @@ export function Pricing() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <span className="text-accent-emerald text-sm font-medium uppercase tracking-wide">
+                    <span className="text-accent-blue text-sm font-medium uppercase tracking-wide">
                         Community Edition
                     </span>
                     <h2 className="text-3xl sm:text-4xl font-bold text-foreground mt-2 mb-4">
@@ -38,7 +38,7 @@ export function Pricing() {
                         No subscriptions, no limits.
                     </p>
 
-                    <Link href="/compare" className="inline-flex items-center gap-2 text-accent-emerald hover:text-accent-emerald/80 transition-colors font-medium">
+                    <Link href="/compare" className="inline-flex items-center gap-2 text-accent-blue hover:text-accent-blue/80 transition-colors font-medium">
                         See how much you save vs PagerDuty <ArrowRight className="w-4 h-4" />
                     </Link>
                 </motion.div>
@@ -50,9 +50,9 @@ export function Pricing() {
                     viewport={{ once: true }}
                     className="max-w-2xl mx-auto"
                 >
-                    <div className="relative rounded-2xl p-8 bg-gradient-to-b from-accent-emerald/20 to-background-secondary border-2 border-accent-emerald/50">
+                    <div className="relative rounded-2xl p-8 surface-panel border-2 border-accent-blue/40">
                         <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                            <span className="flex items-center gap-1 px-3 py-1 bg-accent-emerald text-background text-xs font-semibold rounded-full">
+                            <span className="flex items-center gap-1 px-3 py-1 bg-accent-blue text-white text-xs font-semibold rounded-full">
                                 <Github className="w-3 h-3" />
                                 Open Source
                             </span>
@@ -97,7 +97,7 @@ export function Pricing() {
                         <a
                             href="https://github.com/Dushyant-rahangdale/OpsSentinal/blob/main/LICENSE"
                             target="_blank"
-                            className="text-accent-emerald hover:underline"
+                            className="text-accent-blue hover:underline"
                         >
                             AGPL-3.0
                         </a>

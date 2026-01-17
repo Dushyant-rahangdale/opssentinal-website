@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import {
     AlertTriangle,
     Calendar,
-    TrendingUp,
     Globe,
     Bell,
     BarChart3,
@@ -12,47 +11,67 @@ import {
     FileText,
     Shield,
     List,
+    Plug,
 } from "lucide-react";
+
+const flowSteps = [
+    {
+        title: "Detect",
+        description: "Ingest alerts from monitoring, APM, and uptime sources.",
+    },
+    {
+        title: "Coordinate",
+        description: "Route incidents, trigger on-call, and track ownership.",
+    },
+    {
+        title: "Communicate",
+        description: "Update status pages and notify stakeholders instantly.",
+    },
+    {
+        title: "Learn",
+        description: "Capture postmortems, SLA performance, and insights.",
+    },
+];
 
 // Real features from the codebase
 const features = [
     {
         icon: AlertTriangle,
-        title: "Incident Management",
+        title: "Incident Command",
         description:
-            "Complete incident lifecycle from trigger to resolution. Track, triage, assign, and resolve incidents with full audit trails.",
-        color: "text-accent-red",
-        bgColor: "bg-accent-red/10",
+            "Run the full incident lifecycle from trigger to resolution with timelines, assignments, and audit trails.",
+        color: "text-accent-rose",
+        bgColor: "bg-accent-rose/10",
     },
     {
         icon: Calendar,
         title: "On-Call Scheduling",
         description:
-            "Create rotation schedules with multiple layers and overrides. Automated handoffs and coverage management.",
-        color: "text-accent-cyan",
-        bgColor: "bg-accent-cyan/10",
+            "Design layered rotations, overrides, and handoffs to keep coverage reliable across teams.",
+        color: "text-accent-blue",
+        bgColor: "bg-accent-blue/10",
     },
     {
-        icon: TrendingUp,
-        title: "Escalation Policies",
+        icon: Bell,
+        title: "Escalations & Routing",
         description:
-            "Multi-tier escalation rules to ensure incidents reach the right people based on urgency and availability.",
+            "Automate escalation paths, urgency mapping, and multi-channel alert routing.",
         color: "text-accent-amber",
         bgColor: "bg-accent-amber/10",
     },
     {
         icon: Globe,
-        title: "Status Page",
+        title: "Status Pages",
         description:
-            "Public-facing status pages for your services. Keep customers informed about ongoing incidents and maintenance.",
+            "Publish branded status pages and keep customers updated with incident timelines.",
         color: "text-accent-emerald",
         bgColor: "bg-accent-emerald/10",
     },
     {
-        icon: Bell,
-        title: "Multi-Channel Alerts",
+        icon: Shield,
+        title: "Service Reliability",
         description:
-            "Email, SMS, and push notifications via Twilio, AWS SNS, Firebase, Resend, SendGrid, and more.",
+            "Track service health, apply SLOs, and surface risk before the breach.",
         color: "text-accent-blue",
         bgColor: "bg-accent-blue/10",
     },
@@ -60,17 +79,25 @@ const features = [
         icon: BarChart3,
         title: "Analytics & SLA",
         description:
-            "Track MTTA, MTTR, and SLA compliance. Visualize incident trends and team performance metrics.",
-        color: "text-purple-400",
-        bgColor: "bg-purple-400/10",
+            "Measure MTTA, MTTR, SLA compliance, and trends across incidents and services.",
+        color: "text-accent-blue",
+        bgColor: "bg-accent-blue/10",
+    },
+    {
+        icon: Plug,
+        title: "Integrations & Webhooks",
+        description:
+            "Connect monitoring, DevOps, and custom systems with secure webhooks.",
+        color: "text-accent-emerald",
+        bgColor: "bg-accent-emerald/10",
     },
 ];
 
 const additionalFeatures = [
-    { icon: Users, title: "Teams", description: "Organize users into teams" },
-    { icon: FileText, title: "Postmortems", description: "Document incident learnings" },
-    { icon: Shield, title: "Services", description: "Monitor service health" },
-    { icon: List, title: "Event Logs", description: "Full audit trail" },
+    { icon: Users, title: "Teams & RBAC", description: "Role-based access and teams" },
+    { icon: FileText, title: "Postmortems", description: "Capture learnings and action items" },
+    { icon: List, title: "Event Logs", description: "Trace every change" },
+    { icon: Shield, title: "Security", description: "API keys, audit logs, SSO" },
 ];
 
 function FeatureCard({
@@ -87,7 +114,7 @@ function FeatureCard({
             viewport={{ once: true }}
             transition={{ delay: index * 0.1, duration: 0.5 }}
             whileHover={{ y: -5, scale: 1.02 }}
-            className="glass rounded-2xl p-6 relative overflow-hidden group transition-all duration-300"
+            className="surface-panel rounded-2xl p-6 relative overflow-hidden group transition-all duration-300"
         >
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -126,7 +153,7 @@ function MiniFeature({ feature, index }: { feature: (typeof additionalFeatures)[
 
 export function Features() {
     return (
-        <section id="features" className="relative py-24 bg-background-secondary">
+        <section id="features" className="relative py-24 section-shell">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <motion.div
@@ -135,7 +162,7 @@ export function Features() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <span className="text-accent-emerald text-sm font-medium uppercase tracking-wide">
+                    <span className="text-accent-blue text-sm font-medium uppercase tracking-wide">
                         Features
                     </span>
                     <h2 className="text-3xl sm:text-4xl font-bold text-foreground mt-2 mb-4">
@@ -146,6 +173,24 @@ export function Features() {
                         A complete platform to manage incidents, on-call schedules,
                         and keep your services running smoothly.
                     </p>
+                </motion.div>
+
+                {/* Ops Flow */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="grid md:grid-cols-4 gap-4 mb-12"
+                >
+                    {flowSteps.map((step, index) => (
+                        <div key={step.title} className="surface-panel rounded-xl p-5">
+                            <div className="text-xs font-semibold text-accent-blue uppercase tracking-wide mb-2">
+                                Step {index + 1}
+                            </div>
+                            <h3 className="text-lg font-semibold text-foreground mb-2">{step.title}</h3>
+                            <p className="text-sm text-foreground-muted">{step.description}</p>
+                        </div>
+                    ))}
                 </motion.div>
 
                 {/* Main Features Grid */}
@@ -160,7 +205,7 @@ export function Features() {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    className="glass rounded-2xl p-8"
+                    className="surface-panel rounded-2xl p-8"
                 >
                     <h3 className="text-xl font-semibold text-foreground mb-6 text-center">
                         Plus more...
