@@ -4,9 +4,6 @@ import { motion } from "framer-motion";
 import { Check, X, ArrowRight, Calculator } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-
 // Real pricing data gathered
 const pricingData = {
     pagerduty: {
@@ -43,9 +40,7 @@ export default function ComparePage() {
     };
 
     return (
-        <div className="min-h-screen bg-background text-foreground">
-            <Navbar />
-
+        <div className="min-h-screen section-shell text-foreground">
             <main className="pt-32 pb-24">
                 {/* Hero Section */}
                 <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 text-center">
@@ -69,11 +64,11 @@ export default function ComparePage() {
 
                 {/* Calculator Section */}
                 <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-                    <div className="glass rounded-2xl p-8 md:p-12">
+                    <div className="surface-panel rounded-2xl p-8 md:p-12">
                         <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-12">
                             <div>
                                 <h2 className="text-2xl font-bold flex items-center gap-2">
-                                    <Calculator className="w-6 h-6 text-accent-emerald" />
+                                    <Calculator className="w-6 h-6 text-accent-blue" />
                                     Savings Calculator
                                 </h2>
                                 <p className="text-foreground-secondary mt-2">
@@ -90,9 +85,9 @@ export default function ComparePage() {
                                     step="5"
                                     value={teamSize}
                                     onChange={(e) => setTeamSize(parseInt(e.target.value))}
-                                    className="w-48 accent-accent-emerald"
+                                    className="w-48 accent-accent-blue"
                                 />
-                                <span className="text-xl font-bold text-accent-emerald min-w-[3ch]">
+                                <span className="text-xl font-bold text-accent-blue min-w-[3ch]">
                                     {teamSize}
                                 </span>
                             </div>
@@ -100,21 +95,21 @@ export default function ComparePage() {
 
                         <div className="grid md:grid-cols-4 gap-6">
                             {/* OpsSentinal Card */}
-                            <div className="md:col-span-1 bg-gradient-to-b from-accent-emerald/20 to-transparent border-2 border-accent-emerald/50 rounded-xl p-6 relative overflow-hidden">
-                                <div className="absolute top-0 left-0 right-0 h-1 bg-accent-emerald"></div>
+                            <div className="md:col-span-1 surface-panel border-2 border-accent-blue/40 rounded-xl p-6 relative overflow-hidden">
+                                <div className="absolute top-0 left-0 right-0 h-1 bg-accent-blue"></div>
                                 <h3 className="font-bold text-lg mb-1">{pricingData.opssentinal.name}</h3>
-                                <div className="text-3xl font-bold text-accent-emerald mb-4">
+                                <div className="text-3xl font-bold text-accent-blue mb-4">
                                     $0
                                 </div>
                                 <p className="text-xs text-foreground-muted mb-4">{pricingData.opssentinal.notes}</p>
-                                <div className="text-sm font-medium text-accent-emerald">
+                                <div className="text-sm font-medium text-accent-blue">
                                     Annual Cost: $0
                                 </div>
                             </div>
 
                             {/* Competitors */}
                             {[pricingData.pagerduty, pricingData.incidentio, pricingData.opsgenie].map((competitor) => (
-                                <div key={competitor.name} className="bg-background-secondary rounded-xl p-6 border border-border/50 opacity-80 hover:opacity-100 transition-opacity">
+                                <div key={competitor.name} className="surface-panel rounded-xl p-6 border border-border/50 opacity-85 hover:opacity-100 transition-opacity">
                                     <h3 className="font-bold text-lg mb-1">{competitor.name}</h3>
                                     <div className="text-xl font-semibold text-foreground-secondary mb-4">
                                         ${competitor.price}<span className="text-sm font-normal text-foreground-muted">/user/mo</span>
@@ -138,12 +133,12 @@ export default function ComparePage() {
                 {/* Feature Comparison Table */}
                 <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-3xl font-bold text-center mb-12">Feature Comparison</h2>
-                    <div className="overflow-x-auto">
+                    <div className="overflow-x-auto surface-panel rounded-2xl p-2">
                         <table className="w-full text-left border-collapse">
                             <thead>
                                 <tr className="border-b border-border">
                                     <th className="py-4 px-6 text-foreground-secondary font-medium w-1/3">Feature</th>
-                                    <th className="py-4 px-6 text-accent-emerald font-bold text-lg bg-accent-emerald/5 rounded-t-xl">OpsSentinal</th>
+                                    <th className="py-4 px-6 text-accent-blue font-bold text-lg bg-accent-blue/5 rounded-t-xl">OpsSentinal</th>
                                     <th className="py-4 px-6 text-foreground-secondary font-medium">PagerDuty (Base)</th>
                                     <th className="py-4 px-6 text-foreground-secondary font-medium">OpsGenie</th>
                                 </tr>
@@ -159,10 +154,10 @@ export default function ComparePage() {
                                     { name: "Source Code Access", ops: true, pd: false, og: false },
                                     { name: "No Vendor Lock-in", ops: true, pd: false, og: false },
                                 ].map((row, i) => (
-                                    <tr key={row.name} className="border-b border-border/50 hover:bg-white/5 transition-colors">
+                                    <tr key={row.name} className="border-b border-border/50 hover:bg-black/5 transition-colors">
                                         <td className="py-4 px-6 font-medium">{row.name}</td>
-                                        <td className="py-4 px-6 bg-accent-emerald/5">
-                                            {row.ops ? <Check className="w-5 h-5 text-accent-emerald" /> : <X className="w-5 h-5 text-red-500" />}
+                                        <td className="py-4 px-6 bg-accent-blue/5">
+                                            {row.ops ? <Check className="w-5 h-5 text-accent-blue" /> : <X className="w-5 h-5 text-red-500" />}
                                         </td>
                                         <td className="py-4 px-6 text-foreground-secondary">
                                             {row.pd === true ? <Check className="w-5 h-5 text-gray-400" /> :
@@ -191,8 +186,6 @@ export default function ComparePage() {
                     </Link>
                 </div>
             </main>
-
-            <Footer />
         </div>
     );
 }
