@@ -1,3 +1,7 @@
+---
+order: 13
+---
+
 # Authentication Security
 
 OpsSentinal implements enterprise-grade authentication security features to protect your incident management platform. Our security architecture implements a defense-in-depth strategy covering the network, application, and data layers.

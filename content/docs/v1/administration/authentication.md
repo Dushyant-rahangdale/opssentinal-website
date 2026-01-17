@@ -1,3 +1,7 @@
+---
+order: 1
+---
+
 # Authentication
 
 Configure how users authenticate with OpsSentinal.

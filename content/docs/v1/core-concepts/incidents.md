@@ -1,3 +1,7 @@
+---
+order: 3
+---
+
 # Incidents
 
 Incidents are the core of OpsSentinal. They represent issues that require attention and tracking through resolution.

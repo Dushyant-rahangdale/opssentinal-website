@@ -1,3 +1,7 @@
+---
+order: 9
+---
+
 # Status Page
 
 Communicate service status to customers and stakeholders with a public status page.

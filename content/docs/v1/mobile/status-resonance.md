@@ -1,3 +1,7 @@
+---
+order: 1
+---
+
 # Mobile Status Resonance (UI)
 
 This note captures the mobile header/status updates and the status-tinted ambient background.

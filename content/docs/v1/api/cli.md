@@ -1,3 +1,7 @@
+---
+order: 3
+---
+
 # CLI Tool
 
 The OpsSentinalCLI for user management and automation.

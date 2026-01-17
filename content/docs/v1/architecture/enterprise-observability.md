@@ -1,3 +1,7 @@
+---
+order: 3
+---
+
 # Enterprise Incident Management & Observability Architecture
 
 ## 1. Executive Summary

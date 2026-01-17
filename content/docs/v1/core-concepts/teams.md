@@ -1,3 +1,7 @@
+---
+order: 6
+---
+
 # Teams
 
 Teams help organize users by function, responsibility, or domain.

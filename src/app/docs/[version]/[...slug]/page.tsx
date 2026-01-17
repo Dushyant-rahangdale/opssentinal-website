@@ -1,6 +1,18 @@
 import { notFound } from "next/navigation";
-import { getDocPage } from "@/lib/docs/content";
+import { getDocPage, getAllDocSlugs } from "@/lib/docs/content";
 import { DocsToc } from "@/components/docs/DocsToc";
+import { DOC_VERSIONS } from "@/lib/docs/versions";
+
+export async function generateStaticParams() {
+  const params = [];
+  for (const version of DOC_VERSIONS) {
+    const slugs = getAllDocSlugs(version.id);
+    for (const slug of slugs) {
+      params.push({ version: version.id, slug });
+    }
+  }
+  return params;
+}
 
 export default async function DocsPage({
   params,

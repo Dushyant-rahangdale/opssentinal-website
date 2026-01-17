@@ -35,7 +35,7 @@ export function Hero() {
                             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6"
                         >
                             The command center for{" "}
-                            <span className="text-white">incident response</span>, on-call, and status updates
+                            <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400 bg-clip-text text-transparent">incident response</span>, on-call, and status updates
                         </motion.h1>
 
                         {/* Subheadline */}
@@ -81,15 +81,19 @@ export function Hero() {
                             className="grid sm:grid-cols-3 gap-4 mb-8"
                         >
                             {[
-                                { label: "Incident Response", icon: Activity, detail: "Triage to resolution" },
-                                { label: "Escalations & On-Call", icon: Bell, detail: "Own every handoff" },
-                                { label: "Status Pages", icon: Shield, detail: "Communicate instantly" },
+                                { label: "Incident Response", icon: Activity, detail: "Triage to resolution", color: "from-rose-500/20 to-rose-500/5" },
+                                { label: "Escalations & On-Call", icon: Bell, detail: "Own every handoff", color: "from-amber-500/20 to-amber-500/5" },
+                                { label: "Status Pages", icon: Shield, detail: "Communicate instantly", color: "from-emerald-500/20 to-emerald-500/5" },
                             ].map((item) => (
-                                <div key={item.label} className="surface-panel rounded-xl p-4 bg-slate-800/40 border-slate-700/50 backdrop-blur-md">
-                                    <item.icon className="w-5 h-5 text-white mb-3" />
+                                <motion.div
+                                    key={item.label}
+                                    whileHover={{ scale: 1.02, y: -2 }}
+                                    className={`relative rounded-xl p-4 bg-gradient-to-br ${item.color} border border-white/10 backdrop-blur-md group cursor-pointer transition-all duration-300 hover:border-white/20 hover:shadow-lg hover:shadow-white/5`}
+                                >
+                                    <item.icon className="w-5 h-5 text-white mb-3 group-hover:scale-110 transition-transform" />
                                     <p className="text-sm font-semibold text-white">{item.label}</p>
                                     <p className="text-xs text-slate-400 mt-1">{item.detail}</p>
-                                </div>
+                                </motion.div>
                             ))}
                         </motion.div>
 
@@ -115,37 +119,54 @@ export function Hero() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.5, duration: 0.5 }}
-                            className="mt-8 flex flex-wrap items-center gap-4 sm:gap-6 text-slate-400 text-sm"
+                            className="mt-8 flex flex-wrap items-center gap-4 sm:gap-6 text-slate-300 text-sm"
                         >
-                            <div className="flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-slate-600"></span>
+                            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                </span>
                                 Self-Hosted
                             </div>
-                            <div className="flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-slate-600"></span>
+                            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20">
+                                <span className="w-2 h-2 rounded-full bg-blue-400"></span>
                                 AGPL-3.0
                             </div>
-                            <div className="flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-slate-600"></span>
-                                Docker & Kubernetes
+                            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+                                <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
+                                Docker, Kubernetes, Helm
                             </div>
                         </motion.div>
                     </div>
 
                     {/* Right Content - Dashboard Preview */}
-                    <div className="mt-10 lg:mt-0">
+                    <motion.div
+                        initial={{ opacity: 0, x: 30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.3, duration: 0.6 }}
+                        className="mt-10 lg:mt-0"
+                    >
                         <div className="relative max-w-2xl mx-auto">
+                            {/* Ambient glow behind dashboard */}
+                            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-cyan-500/20 to-emerald-500/20 rounded-3xl blur-2xl opacity-50" />
+
                             <div className="absolute -top-4 left-6 z-10">
-                                <span className="badge bg-slate-800 text-white border-slate-600 shadow-lg">Command Center Preview</span>
+                                <span className="badge bg-slate-900/90 text-white border-blue-500/30 shadow-lg shadow-blue-500/10">Command Center Preview</span>
                             </div>
-                            <div className="relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-700 shadow-2xl shadow-black/50">
+                            <div className="relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-700/50 shadow-2xl shadow-black/50 ring-1 ring-white/10">
                                 <div className="flex items-center justify-between px-4 py-2 bg-slate-950 border-b border-white/5 text-[11px] text-slate-300">
                                     <div className="flex items-center gap-2">
-                                        <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                                        <span className="uppercase tracking-[0.2em] text-[10px] font-bold">Live</span>
+                                        <span className="relative flex h-2 w-2">
+                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                        </span>
+                                        <span className="uppercase tracking-[0.2em] text-[10px] font-bold text-emerald-400">Live</span>
                                     </div>
-                                    <span>OpsSentinal Command Center</span>
-                                    <span className="text-slate-500">Auto-refresh</span>
+                                    <span className="text-slate-400">OpsSentinal Command Center</span>
+                                    <span className="text-slate-500 flex items-center gap-1">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+                                        Auto-refresh
+                                    </span>
                                 </div>
                                 <div className="p-1 bg-slate-950">
                                     <Image
@@ -154,24 +175,28 @@ export function Hero() {
                                         width={1200}
                                         height={640}
                                         priority
-                                        className="rounded-xl opacity-90 transition-opacity hover:opacity-100 duration-700"
+                                        className="rounded-xl opacity-90 transition-all hover:opacity-100 hover:scale-[1.01] duration-700"
                                     />
                                 </div>
                             </div>
                             <div className="mt-4 grid grid-cols-3 gap-3 text-xs text-slate-400">
                                 {[
-                                    { label: "Live incidents", value: "19 active" },
-                                    { label: "Coverage", value: "On-call ready" },
-                                    { label: "Updates", value: "Auto-refresh" },
+                                    { label: "Live incidents", value: "19 active", accent: "text-rose-400" },
+                                    { label: "Coverage", value: "On-call ready", accent: "text-emerald-400" },
+                                    { label: "Updates", value: "Auto-refresh", accent: "text-blue-400" },
                                 ].map((stat) => (
-                                    <div key={stat.label} className="surface-panel rounded-lg p-3 text-center bg-slate-900/40 border-slate-800/40">
-                                        <p className="text-slate-200 font-semibold">{stat.value}</p>
+                                    <motion.div
+                                        key={stat.label}
+                                        whileHover={{ scale: 1.02 }}
+                                        className="rounded-lg p-3 text-center bg-slate-900/60 border border-slate-800/50 backdrop-blur-sm hover:border-slate-700/50 transition-colors"
+                                    >
+                                        <p className={`font-semibold ${stat.accent}`}>{stat.value}</p>
                                         <p className="text-slate-500">{stat.label}</p>
-                                    </div>
+                                    </motion.div>
                                 ))}
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
 

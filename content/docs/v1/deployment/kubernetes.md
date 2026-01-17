@@ -1,3 +1,7 @@
+---
+order: 2
+---
+
 # Kubernetes Deployment
 
 Deploy OpsSentinal on Kubernetes for production workloads.

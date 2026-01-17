@@ -1,3 +1,7 @@
+---
+order: 5
+---
+
 # Data Retention
 
 Manage data storage and automatic cleanup policies.

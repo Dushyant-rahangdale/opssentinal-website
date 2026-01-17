@@ -1,3 +1,7 @@
+---
+order: 12
+---
+
 # Urgency & Severity Mapping
 
 OpsSentinal normalizes alerts from different monitoring tools into a standard **Severity** and **Urgency** model. This ensures consistent notification behavior regardless of whether the alert comes from AWS, Datadog, or GitHub.

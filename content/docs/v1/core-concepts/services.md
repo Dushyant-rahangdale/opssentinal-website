@@ -1,3 +1,7 @@
+---
+order: 2
+---
+
 # Services
 
 Services are the foundation of OpsSentinal. They represent the systems, applications, or infrastructure components you want to monitor.

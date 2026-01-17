@@ -1,3 +1,7 @@
+---
+order: 5
+---
+
 # On-Call Schedules
 
 Schedules determine who is responsible for responding to incidents at any given time.

@@ -1,3 +1,7 @@
+---
+order: 10
+---
+
 # Analytics
 
 Analytics provide insights into incident trends, response times, and team performance.

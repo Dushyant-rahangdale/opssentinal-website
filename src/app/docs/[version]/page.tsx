@@ -1,10 +1,15 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import { getDocPage } from "@/lib/docs/content";
+import { notFound, redirect } from "next/navigation";
+import { getDocPage, getAllDocMeta } from "@/lib/docs/content";
 import { getSidebar } from "@/lib/docs/sidebar";
 import { DocsToc } from "@/components/docs/DocsToc";
+import { DOC_VERSIONS } from "@/lib/docs/versions";
 
-export default async function DocsIndex({
+export async function generateStaticParams() {
+  return DOC_VERSIONS.map((v) => ({ version: v.id }));
+}
+
+export default async function DocsIndexPage({
   params,
 }: {
   params: Promise<{ version: string }>;

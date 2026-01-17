@@ -1,3 +1,7 @@
+---
+order: 4
+---
+
 # Mobile PWA
 
 OpsSentinal works as a Progressive Web App for mobile access.

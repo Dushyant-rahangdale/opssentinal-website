@@ -1,3 +1,7 @@
+---
+order: 4
+---
+
 # Audit Logs
 
 Track security-relevant events across your OpsSentinal workspace.

@@ -1,3 +1,7 @@
+---
+order: 3
+---
+
 # First Steps
 
 After installing OpsSentinal, follow these steps to set up your incident management workflow.

@@ -1,3 +1,5 @@
+import Link from "next/link";
+import Image from "next/image";
 import { PropsWithChildren } from "react";
 import { getSidebar } from "@/lib/docs/sidebar";
 import { NewDocsSidebar } from "@/components/docs/NewDocsSidebar";

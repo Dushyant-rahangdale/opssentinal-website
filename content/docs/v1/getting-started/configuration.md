@@ -1,3 +1,7 @@
+---
+order: 2
+---
+
 # Configuration Reference
 
 All environment variables used by OpsSentinal.

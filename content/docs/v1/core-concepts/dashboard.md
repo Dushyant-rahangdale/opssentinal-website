@@ -1,3 +1,7 @@
+---
+order: 1
+---
+
 # Dashboard
 
 The dashboard is your command center for monitoring incidents and team activity.

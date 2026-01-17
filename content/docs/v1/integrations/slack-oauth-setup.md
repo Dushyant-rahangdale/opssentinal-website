@@ -1,3 +1,7 @@
+---
+order: 2
+---
+
 # Slack OAuth Integration Setup
 
 ## Overview

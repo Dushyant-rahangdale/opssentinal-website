@@ -1,3 +1,7 @@
+---
+order: 2
+---
+
 # OpsSentinel Mobile Development Guide
 
 This document provides a comprehensive overview of the OpsSentinel Mobile App architecture, development workflow, and PWA capabilities.

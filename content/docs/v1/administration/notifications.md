@@ -1,3 +1,7 @@
+---
+order: 2
+---
+
 # Notifications
 
 Configure how OpsSentinal alerts users about incidents.

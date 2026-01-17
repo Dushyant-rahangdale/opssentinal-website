@@ -1,3 +1,7 @@
+---
+order: 1
+---
+
 # Docker Deployment
 
 Deploy OpsSentinal with Docker Compose.

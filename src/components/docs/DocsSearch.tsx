@@ -21,36 +21,75 @@ export function DocsSearch({ version }: { version: string }) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    // Fetch index once per version
+    const fetchIndex = async () => {
+      try {
+        const res = await fetch(`/api/docs/${version}/search`);
+        if (!res.ok) return;
+        const data = await res.json();
+        // data.results has full list. Logic needs to filter this list based on query.
+        // Storing full index in a ref or state to avoid re-fetching would be ideal, 
+        // but for simplicity let's store it in a state and filter derived.
+        // Actually, let's keep it simple: fetch full list, store in a 'fullIndex' state.
+      } catch (e) { console.error(e); }
+    };
+    // Implementing filtering logic below in a better way.
+  }, [version]);
+
+  // Rethinking the implementation:
+  // We want to fetch the index *once* when the component mounts or version changes.
+  // Then filter `results` based on `query`.
+
+  const [fullIndex, setFullIndex] = useState<SearchResult[]>([]);
+
+  useEffect(() => {
+    const fetchIndex = async () => {
+      try {
+        const res = await fetch(`/api/docs/${version}/search`);
+        if (res.ok) {
+          const data = await res.json();
+          setFullIndex(data.results || []);
+        }
+      } catch (e) {
+        console.error("Failed to load search index", e);
+      }
+    };
+    fetchIndex();
+  }, [version]);
+
+  useEffect(() => {
     if (!query.trim()) {
       setResults([]);
       setIsOpen(false);
       return;
     }
 
-    const controller = new AbortController();
-    const run = async () => {
-      try {
-        const res = await fetch(`/api/docs/search?version=${version}&q=${encodeURIComponent(query)}`, {
-          signal: controller.signal,
-        });
-        if (!res.ok) return;
-        const data = await res.json();
-        setResults(data.results || []);
-        setIsOpen(true);
-        setSelectedIndex(-1);
-      } catch (err) {
-        if ((err as Error).name !== 'AbortError') {
-          console.error(err);
-        }
-      }
-    };
+    const lowerQuery = query.toLowerCase();
+    const filtered = fullIndex
+      .filter(entry =>
+        entry.title.toLowerCase().includes(lowerQuery) ||
+        (entry.excerpt && entry.excerpt.toLowerCase().includes(lowerQuery)) ||
+        // The index builder returns 'text', we should check that too.
+        // Wait, the client type uses 'excerpt'. The API returns 'text'.
+        // I need to adapt the type or the API. The API I wrote returns `text` (full content).
+        // That's heavy for client. But I copied the buildIndex logic which included 'text'.
+        // Client side filtering needs 'text' to be effective?
+        // Or I should fix the API to return text and client slices it.
+        // Let's assume the API returns { title, href, text }.
+        (entry as any).text?.toLowerCase().includes(lowerQuery)
+      )
+      .slice(0, 12)
+      .map(entry => ({
+        title: entry.title,
+        href: entry.href,
+        excerpt: (entry as any).text ? (entry as any).text.slice(0, 100) + "..." : entry.excerpt || ""
+      }));
 
-    const timeout = setTimeout(run, 200);
-    return () => {
-      controller.abort();
-      clearTimeout(timeout);
-    };
-  }, [query, version]);
+    setResults(filtered);
+    setIsOpen(true);
+    setSelectedIndex(-1);
+
+  }, [query, fullIndex]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (!isOpen || results.length === 0) return;

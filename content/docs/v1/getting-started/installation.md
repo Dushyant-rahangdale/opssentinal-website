@@ -1,3 +1,7 @@
+---
+order: 1
+---
+
 # Installation Guide
 
 This guide covers all deployment options for OpsSentinal.
@@ -8,6 +12,7 @@ This guide covers all deployment options for OpsSentinal.
 | ----------------------------------------- | --------------------------------- |
 | [Docker Compose](#docker-compose)         | Development and small deployments |
 | [Kubernetes](../deployment/kubernetes.md) | Production and scaling            |
+| [Helm](../deployment/helm.md)             | Templated Kubernetes installs     |
 | [Local Development](#local-development)   | Contributing and testing          |
 
 ---
@@ -53,6 +58,14 @@ docker exec -it opssentinal_app npm run opssentinal -- \
   --password SecurePass123! \
   --role admin
 ```
+
+---
+
+## Helm (Kubernetes)
+
+Use the Helm chart for repeatable Kubernetes installs.
+
+Follow the full guide here: [Helm Deployment](../deployment/helm.md).
 
 ---
 

@@ -48,27 +48,40 @@ export function Pricing() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="max-w-2xl mx-auto"
+                    className="max-w-2xl mx-auto relative"
                 >
-                    <div className="relative rounded-2xl p-8 surface-panel border-2 border-accent-blue/40">
+                    {/* Animated glow border */}
+                    <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-cyan-500 to-emerald-500 rounded-3xl blur-lg opacity-30 animate-pulse" />
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-cyan-500 to-emerald-500 rounded-2xl opacity-50" />
+
+                    <div className="relative rounded-2xl p-8 bg-slate-900 border border-white/10">
                         <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                            <span className="flex items-center gap-1 px-3 py-1 bg-accent-blue text-white text-xs font-semibold rounded-full">
-                                <Github className="w-3 h-3" />
+                            <span className="flex items-center gap-1.5 px-4 py-1.5 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs font-semibold rounded-full shadow-lg shadow-blue-500/25">
+                                <Github className="w-3.5 h-3.5" />
                                 Open Source
                             </span>
                         </div>
 
-                        <div className="text-center mb-8">
-                            <div className="text-5xl font-bold text-foreground mb-2">$0</div>
-                            <p className="text-foreground-muted">Self-hosted • All features</p>
+                        <div className="text-center mb-8 mt-4">
+                            <div className="text-6xl font-bold bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent mb-2">$0</div>
+                            <p className="text-foreground-muted">Self-hosted • All features • Forever free</p>
                         </div>
 
                         <div className="grid sm:grid-cols-2 gap-3 mb-8">
-                            {features.map((feature) => (
-                                <div key={feature} className="flex items-center gap-3">
-                                    <Check className="w-4 h-4 text-accent-emerald flex-shrink-0" />
+                            {features.map((feature, index) => (
+                                <motion.div
+                                    key={feature}
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.05 }}
+                                    className="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors"
+                                >
+                                    <div className="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                                        <Check className="w-3 h-3 text-emerald-400" />
+                                    </div>
                                     <span className="text-foreground-secondary text-sm">{feature}</span>
-                                </div>
+                                </motion.div>
                             ))}
                         </div>
 
@@ -76,7 +89,7 @@ export function Pricing() {
                             <Link
                                 href="https://github.com/Dushyant-rahangdale/OpsSentinal"
                                 target="_blank"
-                                className="btn-primary inline-flex items-center justify-center gap-2 text-base"
+                                className="btn-primary inline-flex items-center justify-center gap-2 text-base px-8 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-400 hover:to-cyan-400 border-0 text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all"
                             >
                                 <Github className="w-4 h-4" />
                                 Get Started

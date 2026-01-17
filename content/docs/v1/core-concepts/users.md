@@ -1,3 +1,7 @@
+---
+order: 7
+---
+
 # Users
 
 User management and role-based access control in OpsSentinal.
