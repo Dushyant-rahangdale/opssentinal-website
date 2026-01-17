@@ -35,10 +35,10 @@ export function Hero() {
                             initial={false}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1, duration: 0.5 }}
-                            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] mb-6"
+                            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] mb-6 drop-shadow-lg"
                         >
                             The future of open source <br />
-                            <span className="text-slate-400">incident response.</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 animate-shimmer bg-[length:200%_auto]">incident response.</span>
                         </motion.h1>
 
                         <motion.p
