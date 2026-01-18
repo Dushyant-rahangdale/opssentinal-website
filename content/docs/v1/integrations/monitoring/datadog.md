@@ -4,11 +4,11 @@ order: 1
 
 # Datadog Integration
 
-Send Datadog alerts to OpsSentinel.
+Send Datadog alerts to OpsKnight.
 
 ## Setup
 
-### Step 1: Create Integration in OpsSentinel
+### Step 1: Create Integration in OpsKnight
 
 1. Go to your Service
 2. Click **Integrations → Add Integration**
@@ -22,7 +22,7 @@ Send Datadog alerts to OpsSentinel.
 
 | Field   | Value                             |
 | ------- | --------------------------------- |
-| Name    | OpsSentinel                       |
+| Name    | OpsKnight                       |
 | URL     | `https://your-ops.com/api/events` |
 | Payload | See below                         |
 
@@ -49,12 +49,12 @@ Send Datadog alerts to OpsSentinel.
 ### Step 3: Add to Monitor
 
 1. Open your Datadog Monitor
-2. In **Notify your team**, add: `@webhook-OpsSentinel`
+2. In **Notify your team**, add: `@webhook-OpsKnight`
 3. Save
 
 ## Event Mapping
 
-| Datadog     | OpsSentinel |
+| Datadog     | OpsKnight |
 | ----------- | ----------- |
 | `Triggered` | `trigger`   |
 | `Recovered` | `resolve`   |
@@ -65,7 +65,7 @@ Send Datadog alerts to OpsSentinel.
 ## Testing
 
 1. Trigger a test alert in Datadog
-2. Verify incident appears in OpsSentinel
+2. Verify incident appears in OpsKnight
 3. Recover the alert
 4. Verify incident resolves
 

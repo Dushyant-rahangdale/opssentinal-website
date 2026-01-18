@@ -4,7 +4,7 @@ order: 2
 
 # Encryption System User Guide
 
-OpsSentinel encrypts sensitive secrets (SSO client secrets, Slack tokens, API keys) using a zero-trust approach.
+OpsKnight encrypts sensitive secrets (SSO client secrets, Slack tokens, API keys) using a zero-trust approach.
 
 ## Overview
 

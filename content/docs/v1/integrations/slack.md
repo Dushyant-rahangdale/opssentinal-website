@@ -22,7 +22,7 @@ For detailed OAuth configuration and environment variables, see [Slack OAuth Set
 1. Go to [api.slack.com/apps](https://api.slack.com/apps)
 2. Click **Create New App**
 3. Choose **From scratch**
-4. Name: `OpsSentinel`
+4. Name: `OpsKnight`
 5. Select your workspace
 
 ### Step 2: Configure OAuth
@@ -42,7 +42,7 @@ Add OAuth scopes:
 3. Authorize the app
 4. Copy the **Bot User OAuth Token**
 
-### Step 4: Configure in OpsSentinel
+### Step 4: Configure in OpsKnight
 
 1. Go to **Settings → Integrations → Slack**
 2. Click **Configure**
@@ -91,7 +91,7 @@ Slack messages include:
 ### Interactive Buttons
 
 - **Acknowledge** - Mark as acknowledged
-- **View** - Open in OpsSentinel
+- **View** - Open in OpsKnight
 
 ## Troubleshooting
 
@@ -104,7 +104,7 @@ Slack messages include:
 ### Button actions not working
 
 1. Enable Interactive Components in Slack app
-2. Set Request URL to your OpsSentinel URL
+2. Set Request URL to your OpsKnight URL
 
 ## Best Practices
 

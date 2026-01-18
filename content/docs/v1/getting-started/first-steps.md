@@ -4,14 +4,14 @@ order: 3
 
 # First Steps
 
-This walkthrough sets up a working incident flow end-to-end so you can validate OpsSentinel quickly.
+This walkthrough sets up a working incident flow end-to-end so you can validate OpsKnight quickly.
 
 ## 1) Create the Admin User
 
 If you did not create an admin during install:
 
 ```bash
-docker exec -it opssentinel_app npm run opssentinel -- \
+docker exec -it opsknight_app npm run opsknight -- \
   --user "Your Name" \
   --email admin@yourcompany.com \
   --password SecurePassword123! \

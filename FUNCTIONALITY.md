@@ -1,6 +1,6 @@
-# OpsSentinal Functionality Overview
+# OpsKnight Functionality Overview
 
-OpsSentinal is a comprehensive, open-source incident management and response platform designed to be a self-hosted alternative to PagerDuty or OpsGenie. It provides end-to-end handling of critical alerts, ensuring the right people are notified at the right time.
+OpsKnight is a comprehensive, open-source incident management and response platform designed to be a self-hosted alternative to PagerDuty or OpsGenie. It provides end-to-end handling of critical alerts, ensuring the right people are notified at the right time.
 
 ## 🚨 Incident Management
 The core of the platform is tracking critical issues from trigger to resolution.
@@ -28,7 +28,7 @@ Ensure no alert goes unheard.
 - **Round Robin**: Distribute alerts evenly across team members.
 
 ## 🔌 Integrations & Ingestion
-OpsSentinal acts as a central hub for all your monitoring tools.
+OpsKnight acts as a central hub for all your monitoring tools.
 - **Native Support**: Built-in parsers for:
     - AWS CloudWatch
     - Azure Monitor

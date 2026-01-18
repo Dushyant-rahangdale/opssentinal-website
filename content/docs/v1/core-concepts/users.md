@@ -4,7 +4,7 @@ order: 7
 
 # Users
 
-Manage user access and permissions in OpsSentinel.
+Manage user access and permissions in OpsKnight.
 
 ## Roles
 
@@ -19,7 +19,7 @@ Manage user access and permissions in OpsSentinel.
 ### CLI
 
 ```bash
-npm run opssentinel -- \
+npm run opsknight -- \
   --user "John Doe" \
   --email john@company.com \
   --password SecurePass123! \

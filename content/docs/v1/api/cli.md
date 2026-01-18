@@ -4,18 +4,18 @@ order: 3
 
 # CLI Tool
 
-The OpsSentinel CLI is used for user management and bootstrap automation.
+The OpsKnight CLI is used for user management and bootstrap automation.
 
 ## Usage
 
 ```bash
-npm run opssentinel -- [options]
+npm run opsknight -- [options]
 ```
 
 ## Create a User
 
 ```bash
-npm run opssentinel -- \
+npm run opsknight -- \
   --user "John Doe" \
   --email john@company.com \
   --password SecurePass123! \
@@ -35,7 +35,7 @@ npm run opssentinel -- \
 ## Update a User
 
 ```bash
-npm run opssentinel -- \
+npm run opsknight -- \
   --user "John Doe" \
   --email john@company.com \
   --password NewPassword123! \
@@ -46,7 +46,7 @@ npm run opssentinel -- \
 ## Docker Usage
 
 ```bash
-docker exec -it opssentinel_app npm run opssentinel -- \
+docker exec -it opsknight_app npm run opsknight -- \
   --user "Admin" \
   --email admin@example.com \
   --password SecurePass123! \
@@ -56,7 +56,7 @@ docker exec -it opssentinel_app npm run opssentinel -- \
 ## Kubernetes Usage
 
 ```bash
-kubectl exec -it deploy/opssentinel -- npm run opssentinel -- \
+kubectl exec -it deploy/opsknight -- npm run opsknight -- \
   --user "Admin" \
   --email admin@example.com \
   --password SecurePass123! \

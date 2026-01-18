@@ -4,7 +4,7 @@ order: 4
 
 # Monitoring Tool Integrations
 
-Connect your monitoring tools to OpsSentinel.
+Connect your monitoring tools to OpsKnight.
 
 ## Supported Tools
 
@@ -31,7 +31,7 @@ Connect your monitoring tools to OpsSentinel.
 
 ## How It Works
 
-All monitoring tools use the OpsSentinel Events API:
+All monitoring tools use the OpsKnight Events API:
 
 ```
 Monitoring Tool → HTTP POST → /api/events → Incident
@@ -39,14 +39,14 @@ Monitoring Tool → HTTP POST → /api/events → Incident
 
 ## Common Setup Pattern
 
-1. Create an Integration in OpsSentinel
+1. Create an Integration in OpsKnight
 2. Copy the Routing Key
 3. Configure your monitoring tool to send webhooks
-4. Map fields to OpsSentinel format
+4. Map fields to OpsKnight format
 
 ## Event Format
 
-OpsSentinel accepts events in this format:
+OpsKnight accepts events in this format:
 
 ```json
 {
@@ -67,7 +67,7 @@ OpsSentinel accepts events in this format:
 
 ## Severity Mapping
 
-| Your Tool     | OpsSentinel |
+| Your Tool     | OpsKnight |
 | ------------- | ----------- |
 | Critical / P1 | `critical`  |
 | Error / P2    | `error`     |

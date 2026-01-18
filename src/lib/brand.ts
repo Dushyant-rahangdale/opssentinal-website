@@ -1,32 +1,32 @@
 /**
- * OpsSentinel Brand Constants
+ * OpsKnight Brand Constants
  *
  * Centralized brand configuration for consistent usage across the website.
  */
 
 export const BRAND = {
-    name: "OpsSentinel",
+    name: "OpsKnight",
     tagline: "Open Source Incident Response",
     description: "The complete open-source platform for on-call management, incident response, and status pages.",
-    fullDescription: "OpsSentinel is building the ultimate self-hosted command center for modern engineering teams. Self-hosted, extensible, and built for DevOps & SRE teams.",
-    domain: "opssentinal.com",
+    fullDescription: "OpsKnight is building the ultimate self-hosted command center for modern engineering teams. Self-hosted, extensible, and built for DevOps & SRE teams.",
+    domain: "opsknight.com",
 
     // Status
     status: "In Development",
     statusMessage: "Launching Soon",
 
     links: {
-        github: "https://github.com/Dushyant-rahangdale/OpsSentinel",
+        github: "https://github.com/OpsKnight/OpsKnight",
         sponsor: "https://github.com/sponsors/Dushyant-rahangdale",
         docs: "/docs/v1",
-        twitter: "https://twitter.com/opssentinel",
-        email: "hello@opssentinal.com",
-        issues: "https://github.com/Dushyant-rahangdale/OpsSentinel/issues",
-        discussions: "https://github.com/Dushyant-rahangdale/OpsSentinel/discussions",
-        releases: "https://github.com/Dushyant-rahangdale/OpsSentinel/releases",
-        contributing: "https://github.com/Dushyant-rahangdale/OpsSentinel/blob/main/CONTRIBUTING.md",
-        license: "https://github.com/Dushyant-rahangdale/OpsSentinel/blob/main/LICENSE",
-        security: "https://github.com/Dushyant-rahangdale/OpsSentinel/security",
+        twitter: "https://twitter.com/opsknight",
+        email: "hello@opsknight.com",
+        issues: "https://github.com/OpsKnight/OpsKnight/issues",
+        discussions: "https://github.com/OpsKnight/OpsKnight/discussions",
+        releases: "https://github.com/OpsKnight/OpsKnight/releases",
+        contributing: "https://github.com/OpsKnight/OpsKnight/blob/main/CONTRIBUTING.md",
+        license: "https://github.com/OpsKnight/OpsKnight/blob/main/LICENSE",
+        security: "https://github.com/OpsKnight/OpsKnight/security",
     },
 
     // Assets
@@ -39,7 +39,7 @@ export const BRAND = {
 
     // SEO
     seo: {
-        title: "OpsSentinel | Open-Source Incident Management Platform",
+        title: "OpsKnight | Open-Source Incident Management Platform",
         description: "The complete open-source platform for on-call management, incident response, and status pages. Self-hosted, extensible, and built for DevOps & SRE teams.",
         keywords: [
             "incident management",
@@ -66,7 +66,7 @@ export const BRAND = {
         }
     ],
     keywords: [
-        "OpsSentinel",
+        "OpsKnight",
         "Incident Response",
         "On-call Management",
         "Status Pages",

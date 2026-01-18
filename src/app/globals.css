@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 @plugin "@tailwindcss/typography";
 
-/* OpsSentinal Layout System - Aligned with App Muted Executive Theme */
+/* OpsKnight Layout System - Aligned with App Muted Executive Theme */
 :root {
   /* Core Palette - Muted Executive Slate (Light Mode Default) */
   --background: #f8fafc;

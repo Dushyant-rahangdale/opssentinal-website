@@ -99,7 +99,7 @@ export function TelemetryDisplay() {
 
             {/* Demo Notice */}
             <p className="text-center text-foreground-muted text-xs mt-4">
-                Illustrative snapshot from the OpsSentinel dashboard
+                Illustrative snapshot from the OpsKnight dashboard
             </p>
         </motion.div>
     );

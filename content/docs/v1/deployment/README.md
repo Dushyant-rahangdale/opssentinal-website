@@ -4,7 +4,7 @@ order: 6
 
 # Deployment
 
-Guides for deploying OpsSentinel in production.
+Guides for deploying OpsKnight in production.
 
 ## In This Section
 

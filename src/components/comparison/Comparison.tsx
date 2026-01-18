@@ -6,24 +6,24 @@ import Link from "next/link";
 import { BRAND } from "@/lib/brand";
 
 const features = [
-    { name: "Incident Management", opssentinel: true, pagerduty: true, opsgenie: true },
-    { name: "On-Call Scheduling", opssentinel: true, pagerduty: true, opsgenie: true },
-    { name: "Escalation Policies", opssentinel: true, pagerduty: true, opsgenie: true },
-    { name: "Status Pages", opssentinel: true, pagerduty: "addon", opsgenie: "addon" },
-    { name: "Self-Hosted Option", opssentinel: true, pagerduty: false, opsgenie: false },
-    { name: "Full Source Access", opssentinel: true, pagerduty: false, opsgenie: false },
-    { name: "Unlimited Users", opssentinel: true, pagerduty: false, opsgenie: false },
-    { name: "Unlimited Incidents", opssentinel: true, pagerduty: false, opsgenie: false },
-    { name: "20+ Integrations", opssentinel: true, pagerduty: true, opsgenie: true },
-    { name: "API Access", opssentinel: true, pagerduty: true, opsgenie: true },
-    { name: "Custom Webhooks", opssentinel: true, pagerduty: true, opsgenie: true },
-    { name: "Analytics & SLA", opssentinel: true, pagerduty: true, opsgenie: true },
-    { name: "No Vendor Lock-in", opssentinel: true, pagerduty: false, opsgenie: false },
-    { name: "Data Sovereignty", opssentinel: true, pagerduty: false, opsgenie: false },
+    { name: "Incident Management", opsknight: true, pagerduty: true, opsgenie: true },
+    { name: "On-Call Scheduling", opsknight: true, pagerduty: true, opsgenie: true },
+    { name: "Escalation Policies", opsknight: true, pagerduty: true, opsgenie: true },
+    { name: "Status Pages", opsknight: true, pagerduty: "addon", opsgenie: "addon" },
+    { name: "Self-Hosted Option", opsknight: true, pagerduty: false, opsgenie: false },
+    { name: "Full Source Access", opsknight: true, pagerduty: false, opsgenie: false },
+    { name: "Unlimited Users", opsknight: true, pagerduty: false, opsgenie: false },
+    { name: "Unlimited Incidents", opsknight: true, pagerduty: false, opsgenie: false },
+    { name: "20+ Integrations", opsknight: true, pagerduty: true, opsgenie: true },
+    { name: "API Access", opsknight: true, pagerduty: true, opsgenie: true },
+    { name: "Custom Webhooks", opsknight: true, pagerduty: true, opsgenie: true },
+    { name: "Analytics & SLA", opsknight: true, pagerduty: true, opsgenie: true },
+    { name: "No Vendor Lock-in", opsknight: true, pagerduty: false, opsgenie: false },
+    { name: "Data Sovereignty", opsknight: true, pagerduty: false, opsgenie: false },
 ];
 
 const pricing = {
-    opssentinel: { price: "$0", period: "forever", note: "Self-hosted, all features" },
+    opsknight: { price: "$0", period: "forever", note: "Self-hosted, all features" },
     pagerduty: { price: "$21", period: "/user/mo", note: "Professional plan, billed annually" },
     opsgenie: { price: "$9", period: "/user/mo", note: "Essentials plan, limited features" },
 };
@@ -89,7 +89,7 @@ export function Comparison() {
                     viewport={{ once: true }}
                     className="relative"
                 >
-                    {/* Highlight for OpsSentinel column */}
+                    {/* Highlight for OpsKnight column */}
                     <div className="absolute top-0 left-[25%] w-[25%] h-full bg-emerald-500/5 rounded-t-2xl pointer-events-none hidden md:block" />
 
                     <div className="overflow-x-auto">
@@ -101,8 +101,8 @@ export function Comparison() {
                                     <th className="py-6 px-4 text-center relative">
                                         <div className="inline-flex flex-col items-center gap-1">
                                             <span className="text-emerald-400 font-bold text-lg">{BRAND.name}</span>
-                                            <span className="text-2xl font-bold text-white">{pricing.opssentinel.price}</span>
-                                            <span className="text-xs text-slate-500">{pricing.opssentinel.note}</span>
+                                            <span className="text-2xl font-bold text-white">{pricing.opsknight.price}</span>
+                                            <span className="text-xs text-slate-500">{pricing.opsknight.note}</span>
                                         </div>
                                     </th>
                                     <th className="py-6 px-4 text-center">
@@ -135,7 +135,7 @@ export function Comparison() {
                                     >
                                         <td className="py-4 px-4 text-slate-300 text-sm font-medium">{feature.name}</td>
                                         <td className="py-4 px-4 bg-emerald-500/5">
-                                            <FeatureValue value={feature.opssentinel} />
+                                            <FeatureValue value={feature.opsknight} />
                                         </td>
                                         <td className="py-4 px-4">
                                             <FeatureValue value={feature.pagerduty} />

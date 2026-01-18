@@ -4,7 +4,7 @@ order: 2
 
 # Core Concepts
 
-Understanding the fundamental building blocks of OpsSentinel.
+Understanding the fundamental building blocks of OpsKnight.
 
 ## In This Section
 

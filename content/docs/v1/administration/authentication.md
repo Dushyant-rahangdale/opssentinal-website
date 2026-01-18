@@ -4,7 +4,7 @@ order: 1
 
 # Authentication
 
-Configure how users authenticate with OpsSentinel and how identities map to roles.
+Configure how users authenticate with OpsKnight and how identities map to roles.
 
 ## Authentication Methods
 
@@ -20,7 +20,7 @@ Local authentication uses email and password.
 ### Create a User
 
 ```bash
-npm run opssentinel -- \
+npm run opsknight -- \
   --user "John Doe" \
   --email john@company.com \
   --password SecurePass123! \
@@ -37,12 +37,12 @@ Single sign-on is recommended for production. Configure your identity provider i
 
 ### Role Mapping
 
-Map identity provider claims to OpsSentinel roles in **Settings → Authentication → Role Mapping**.
+Map identity provider claims to OpsKnight roles in **Settings → Authentication → Role Mapping**.
 
 Example mapping:
 
 ```
-Provider Role    → OpsSentinel Role
+Provider Role    → OpsKnight Role
 admin            → Admin
 engineer         → Responder
 viewer           → User

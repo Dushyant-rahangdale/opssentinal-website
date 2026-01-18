@@ -4,7 +4,7 @@ order: 4
 
 # Audit Logs
 
-Track security-relevant events across your OpsSentinel workspace.
+Track security-relevant events across your OpsKnight workspace.
 
 ## Overview
 

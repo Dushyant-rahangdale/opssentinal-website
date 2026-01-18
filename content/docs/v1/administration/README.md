@@ -4,7 +4,7 @@ order: 3
 
 # Administration
 
-Settings and configuration for OpsSentinel administrators.
+Settings and configuration for OpsKnight administrators.
 
 ## In This Section
 

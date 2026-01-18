@@ -21,7 +21,7 @@ import { BRAND } from "@/lib/brand";
 
 type CellValue = boolean | string;
 
-type VendorKey = "opssentinel" | "pagerduty" | "incidentio" | "opsgenie";
+type VendorKey = "opsknight" | "pagerduty" | "incidentio" | "opsgenie";
 
 type Vendor = {
     name: string;
@@ -71,7 +71,7 @@ const vendors: Record<VendorKey, Vendor> = {
         unit: "/user/mo",
         notes: "Pro Plan + On-call addon. Prices vary by volume.",
     },
-    opssentinel: {
+    opsknight: {
         name: BRAND.name,
         price: 0,
         unit: "forever",
@@ -79,7 +79,7 @@ const vendors: Record<VendorKey, Vendor> = {
     },
 };
 
-const vendorOrder: VendorKey[] = ["opssentinel", "pagerduty", "incidentio", "opsgenie"];
+const vendorOrder: VendorKey[] = ["opsknight", "pagerduty", "incidentio", "opsgenie"];
 
 const statCards: StatCard[] = [
     {
@@ -158,35 +158,35 @@ const comparisonSections: ComparisonSection[] = [
         rows: [
             {
                 feature: "On-call scheduling",
-                opssentinel: true,
+                opsknight: true,
                 pagerduty: true,
                 incidentio: true,
                 opsgenie: true,
             },
             {
                 feature: "Escalation policies",
-                opssentinel: true,
+                opsknight: true,
                 pagerduty: true,
                 incidentio: true,
                 opsgenie: true,
             },
             {
                 feature: "Multi-channel alerting",
-                opssentinel: "Email, SMS, Voice, Slack, Webhook",
+                opsknight: "Email, SMS, Voice, Slack, Webhook",
                 pagerduty: "Email, SMS, Voice, Mobile",
                 incidentio: "Slack, Email",
                 opsgenie: "Email, SMS, Voice, Mobile",
             },
             {
                 feature: "Schedules by team/service",
-                opssentinel: true,
+                opsknight: true,
                 pagerduty: true,
                 incidentio: "Limited",
                 opsgenie: true,
             },
             {
                 feature: "Runbook links",
-                opssentinel: true,
+                opsknight: true,
                 pagerduty: "Add-on",
                 incidentio: true,
                 opsgenie: true,
@@ -199,28 +199,28 @@ const comparisonSections: ComparisonSection[] = [
         rows: [
             {
                 feature: "Postmortem templates",
-                opssentinel: true,
+                opsknight: true,
                 pagerduty: "Add-on",
                 incidentio: true,
                 opsgenie: true,
             },
             {
                 feature: "Action item tracking",
-                opssentinel: true,
+                opsknight: true,
                 pagerduty: "Add-on",
                 incidentio: true,
                 opsgenie: "Limited",
             },
             {
                 feature: "Timeline + audit log",
-                opssentinel: true,
+                opsknight: true,
                 pagerduty: true,
                 incidentio: true,
                 opsgenie: true,
             },
             {
                 feature: "Impact + status updates",
-                opssentinel: true,
+                opsknight: true,
                 pagerduty: "Add-on",
                 incidentio: true,
                 opsgenie: true,
@@ -233,28 +233,28 @@ const comparisonSections: ComparisonSection[] = [
         rows: [
             {
                 feature: "Self-hosted option",
-                opssentinel: true,
+                opsknight: true,
                 pagerduty: false,
                 incidentio: false,
                 opsgenie: false,
             },
             {
                 feature: "Source code access",
-                opssentinel: true,
+                opsknight: true,
                 pagerduty: false,
                 incidentio: false,
                 opsgenie: false,
             },
             {
                 feature: "Custom workflows",
-                opssentinel: true,
+                opsknight: true,
                 pagerduty: "Limited",
                 incidentio: "Templates",
                 opsgenie: "Limited",
             },
             {
                 feature: "No vendor lock-in",
-                opssentinel: true,
+                opsknight: true,
                 pagerduty: false,
                 incidentio: false,
                 opsgenie: false,
@@ -267,28 +267,28 @@ const comparisonSections: ComparisonSection[] = [
         rows: [
             {
                 feature: "Slack + Teams",
-                opssentinel: true,
+                opsknight: true,
                 pagerduty: true,
                 incidentio: true,
                 opsgenie: true,
             },
             {
                 feature: "Monitoring webhooks",
-                opssentinel: true,
+                opsknight: true,
                 pagerduty: true,
                 incidentio: true,
                 opsgenie: true,
             },
             {
                 feature: "Terraform + API",
-                opssentinel: true,
+                opsknight: true,
                 pagerduty: true,
                 incidentio: "API only",
                 opsgenie: true,
             },
             {
                 feature: "Custom integrations",
-                opssentinel: "Unlimited",
+                opsknight: "Unlimited",
                 pagerduty: "Limited",
                 incidentio: "Limited",
                 opsgenie: "Limited",
@@ -522,20 +522,20 @@ export default function ComparePage() {
                             {costCards.map(({ key, vendor, annual }) => (
                                 <div
                                     key={vendor.name}
-                                    className={`rounded-2xl p-6 border ${key === "opssentinel"
+                                    className={`rounded-2xl p-6 border ${key === "opsknight"
                                         ? "border-emerald-400/40 bg-emerald-500/5"
                                         : "border-white/10 bg-slate-950/60"
                                         }`}
                                 >
                                     <div className="flex items-start justify-between">
                                         <h3 className="font-bold text-lg mb-1">{vendor.name}</h3>
-                                        {key === "opssentinel" ? (
+                                        {key === "opsknight" ? (
                                             <span className="text-xs font-semibold text-emerald-300 bg-emerald-500/10 px-2 py-1 rounded-full">
                                                 Recommended
                                             </span>
                                         ) : null}
                                     </div>
-                                    <div className={`text-3xl font-bold mb-4 ${key === "opssentinel" ? "text-emerald-300" : "text-white"}`}>
+                                    <div className={`text-3xl font-bold mb-4 ${key === "opsknight" ? "text-emerald-300" : "text-white"}`}>
                                         ${vendor.price}
                                         <span className="text-sm font-normal text-slate-400">{vendor.unit}</span>
                                     </div>
@@ -607,7 +607,7 @@ export default function ComparePage() {
                                             <tr className="border-b border-white/10">
                                                 <th className="py-3 px-4 text-slate-400 font-medium w-1/3">Feature</th>
                                                 <th className="py-3 px-4 text-emerald-300 font-semibold bg-emerald-500/5 rounded-t-xl">
-                                                    OpsSentinel
+                                                    OpsKnight
                                                 </th>
                                                 <th className="py-3 px-4 text-slate-400 font-medium">PagerDuty</th>
                                                 <th className="py-3 px-4 text-slate-400 font-medium">incident.io</th>
@@ -626,7 +626,7 @@ export default function ComparePage() {
                                                 >
                                                     <td className="py-3 px-4 text-sm text-slate-200 font-medium">{row.feature}</td>
                                                     <td className="py-3 px-4 bg-emerald-500/5">
-                                                        <FeatureValue value={row.opssentinel} />
+                                                        <FeatureValue value={row.opsknight} />
                                                     </td>
                                                     <td className="py-3 px-4 text-slate-300">
                                                         <FeatureValue value={row.pagerduty} />

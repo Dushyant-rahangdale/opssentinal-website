@@ -4,7 +4,7 @@ order: 4
 
 # Mobile PWA
 
-OpsSentinel works as a Progressive Web App for mobile access.
+OpsKnight works as a Progressive Web App for mobile access.
 
 ## Features
 
@@ -17,14 +17,14 @@ OpsSentinel works as a Progressive Web App for mobile access.
 
 ### iOS (Safari)
 
-1. Open OpsSentinel in Safari
+1. Open OpsKnight in Safari
 2. Tap the **Share** button
 3. Scroll and tap **Add to Home Screen**
 4. Tap **Add**
 
 ### Android (Chrome)
 
-1. Open OpsSentinel in Chrome
+1. Open OpsKnight in Chrome
 2. Tap the menu (⋮)
 3. Tap **Install app** or **Add to Home Screen**
 4. Confirm installation
@@ -33,7 +33,7 @@ OpsSentinel works as a Progressive Web App for mobile access.
 
 ### Enabling Push
 
-1. Open OpsSentinel on mobile
+1. Open OpsKnight on mobile
 2. A prompt will ask for notification permission
 3. Tap **Allow**
 4. Notifications are now enabled

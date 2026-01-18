@@ -4,7 +4,7 @@ order: 9
 
 # Mobile
 
-Mobile UX notes and PWA development guidance for OpsSentinel.
+Mobile UX notes and PWA development guidance for OpsKnight.
 
 ## In This Section
 
@@ -16,4 +16,4 @@ Mobile UX notes and PWA development guidance for OpsSentinel.
 
 ## When to Read
 
-Use these docs when working on the mobile experience or deploying OpsSentinel as a PWA.
+Use these docs when working on the mobile experience or deploying OpsKnight as a PWA.

@@ -4,7 +4,7 @@ order: 1
 
 # Getting Started
 
-This section covers everything you need to get OpsSentinel up and running.
+This section covers everything you need to get OpsKnight up and running.
 
 ## In This Section
 
@@ -16,7 +16,7 @@ This section covers everything you need to get OpsSentinel up and running.
 
 ## Prerequisites
 
-Before installing OpsSentinel, ensure you have:
+Before installing OpsKnight, ensure you have:
 
 - **Docker** (v20+) and **Docker Compose** (v2+) for containerized deployment
 - **PostgreSQL** (v14+) if running without Docker
@@ -28,8 +28,8 @@ The fastest way to get started is with Docker Compose:
 
 ```bash
 # Clone the repository
-git clone https://github.com/dushyant-rahangdale/opssentinel.git
-cd opssentinel
+git clone https://github.com/dushyant-rahangdale/opsknight.git
+cd opsknight
 
 # Copy environment file
 cp env.example .env
@@ -38,7 +38,7 @@ cp env.example .env
 docker compose up -d
 
 # Create admin user
-docker exec -it opssentinel_app npm run opssentinel -- \
+docker exec -it opsknight_app npm run opsknight -- \
   --user "Admin" \
   --email admin@example.com \
   --password SecurePass123! \
