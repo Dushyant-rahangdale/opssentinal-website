@@ -2,7 +2,9 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { Github, Terminal, Copy, ArrowRight } from "lucide-react";
+import { BRAND } from "@/lib/brand";
 
 export function CTA() {
     return (
@@ -41,7 +43,7 @@ export function CTA() {
                             <div className="p-4 font-mono text-sm">
                                 <div className="flex items-center mb-2">
                                     <span className="text-emerald-500 mr-2">$</span>
-                                    <span className="text-slate-300">git clone https://github.com/opssentinal</span>
+                                    <span className="text-slate-300">git clone {BRAND.links.github}</span>
                                 </div>
                                 <div className="flex items-center">
                                     <span className="text-emerald-500 mr-2">$</span>
@@ -52,21 +54,30 @@ export function CTA() {
                     </div>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <Link
-                            href="https://github.com/Dushyant-rahangdale/OpsSentinal"
-                            target="_blank"
-                            className="btn-primary h-12 px-8 bg-white text-slate-950 hover:bg-slate-200 border-none shadow-lg shadow-white/5 transition-all w-full sm:w-auto flex items-center justify-center"
+                        <Button
+                            asChild
+                            size="lg"
+                            className="h-12 px-8 bg-white text-slate-950 hover:bg-slate-200 border-none shadow-lg shadow-white/5 transition-all w-full sm:w-auto"
                         >
-                            <Github className="w-5 h-5 mr-2" />
-                            Star on GitHub
-                        </Link>
-                        <Link
-                            href="/docs"
-                            className="btn-secondary h-12 px-8 bg-transparent border-white/10 text-white hover:bg-white/5 w-full sm:w-auto flex items-center justify-center"
+                            <Link
+                                href={BRAND.links.github}
+                                target="_blank"
+                            >
+                                <Github className="w-5 h-5 mr-2" />
+                                Star on GitHub
+                            </Link>
+                        </Button>
+                        <Button
+                            asChild
+                            variant="outline"
+                            size="lg"
+                            className="h-12 px-8 bg-transparent border-white/10 text-white hover:bg-white/5 w-full sm:w-auto hover:text-white"
                         >
-                            Read the Docs
-                            <ArrowRight className="w-4 h-4 ml-2 opacity-50" />
-                        </Link>
+                            <Link href="/docs">
+                                Read the Docs
+                                <ArrowRight className="w-4 h-4 ml-2 opacity-50" />
+                            </Link>
+                        </Button>
                     </div>
                 </motion.div>
             </div>

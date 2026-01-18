@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { integrationIcons, IntegrationKey } from "../icons/IntegrationIcons";
+import { BRAND } from "@/lib/brand";
 
 // Sources: Monitoring & Ingestion
 const sources: { name: string; key: IntegrationKey; category: string }[] = [
@@ -129,7 +130,7 @@ export function Integrations() {
                         Connect your stack
                     </h2>
                     <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-                        OpsSentinal acts as the central nervous system for your reliability stack.
+                        {BRAND.name} acts as the central nervous system for your reliability stack.
                     </p>
                 </div>
 
@@ -181,7 +182,7 @@ export function Integrations() {
                             <div className="relative w-full h-full">
                                 <Image
                                     src="/logo.svg"
-                                    alt="OpsSentinal"
+                                    alt={BRAND.name}
                                     fill
                                     className="object-contain drop-shadow-[0_0_15px_rgba(16,185,129,0.3)]"
                                 />

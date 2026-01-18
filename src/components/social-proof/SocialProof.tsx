@@ -3,12 +3,14 @@
 import { motion } from "framer-motion";
 import { Github, Shield, Layers, Plug, Heart } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { BRAND } from "@/lib/brand";
 
 const pillars = [
     {
         icon: Shield,
         title: "Own your reliability stack",
-        description: "Run OpsSentinal in your cloud with full control and privacy.",
+        description: `Run ${BRAND.name} in your cloud with full control and privacy.`,
     },
     {
         icon: Layers,
@@ -25,7 +27,7 @@ const pillars = [
 const stats = [
     { label: "Self-hosted", value: "100%" },
     { label: "Integrations", value: "20+" },
-    { label: "License", value: "AGPL-3.0" },
+    { label: "License", value: BRAND.license },
 ];
 
 const tools = [
@@ -86,27 +88,38 @@ export function SocialProof() {
                                 <span className="text-slate-500">Trust isn&apos;t bought, it&apos;s built.</span>
                             </h2>
                             <p className="text-slate-400 max-w-xl mb-8 leading-relaxed text-lg">
-                                OpsSentinal is built in the open. You can audit every line of code, contribute features,
+                                {BRAND.name} is built in the open. You can audit every line of code, contribute features,
                                 and host it entirely within your own infrastructure without vendor lock-in.
                             </p>
 
                             <div className="flex flex-wrap gap-4 items-center">
-                                <Link
-                                    href="https://github.com/Dushyant-rahangdale/OpsSentinal"
-                                    target="_blank"
-                                    className="btn-primary bg-white text-slate-950 hover:bg-slate-200 border-none h-12 px-6 flex items-center shadow-xl shadow-white/5"
+                                <Button
+                                    asChild
+                                    size="lg"
+                                    className="bg-white text-slate-950 hover:bg-slate-200 border-none h-12 px-6 shadow-xl shadow-white/5"
                                 >
-                                    <Github className="w-5 h-5 mr-2" />
-                                    View Source Code
-                                </Link>
-                                <Link
-                                    href="https://github.com/sponsors/Dushyant-rahangdale"
-                                    target="_blank"
-                                    className="inline-flex items-center justify-center px-6 h-12 rounded-xl border border-pink-500/20 bg-pink-500/5 text-pink-400 hover:bg-pink-500/10 hover:border-pink-500/40 hover:text-pink-300 transition-all text-sm font-medium shadow-[0_0_15px_-5px_rgba(236,72,153,0.3)]"
+                                    <Link
+                                        href={BRAND.links.github}
+                                        target="_blank"
+                                    >
+                                        <Github className="w-5 h-5 mr-2" />
+                                        View Source Code
+                                    </Link>
+                                </Button>
+                                <Button
+                                    asChild
+                                    variant="outline"
+                                    size="lg"
+                                    className="px-6 h-12 rounded-xl border-pink-500/20 bg-pink-500/5 text-pink-400 hover:bg-pink-500/10 hover:border-pink-500/40 hover:text-pink-300 hover:scale-105 transition-all shadow-[0_0_15px_-5px_rgba(236,72,153,0.3)]"
                                 >
-                                    <Heart className="w-4 h-4 mr-2 fill-current" />
-                                    Sponsor Us
-                                </Link>
+                                    <Link
+                                        href={BRAND.links.sponsor}
+                                        target="_blank"
+                                    >
+                                        <Heart className="w-4 h-4 mr-2 fill-current" />
+                                        Sponsor Us
+                                    </Link>
+                                </Button>
                                 <div className="hidden sm:flex items-center gap-8 pl-8 border-l border-white/10">
                                     {stats.map((stat) => (
                                         <div key={stat.label} className="text-center group cursor-default">
