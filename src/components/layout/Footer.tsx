@@ -11,6 +11,7 @@ const footerLinks = {
         { label: "Integrations", href: "/#integrations" },
         { label: "Pricing", href: "/#pricing" },
         { label: "Compare", href: "/compare" },
+        { label: "Contact", href: "/contact" },
     ],
     resources: [
         { label: "Documentation", href: "/docs" },

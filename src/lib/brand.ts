@@ -16,17 +16,17 @@ export const BRAND = {
     statusMessage: "Launching Soon",
 
     links: {
-        github: "https://github.com/OpsKnight/OpsKnight",
+        github: "https://github.com/Dushyant-rahangdale/OpsKnight",
         sponsor: "https://github.com/sponsors/Dushyant-rahangdale",
         docs: "/docs/v1",
         twitter: "https://twitter.com/opsknight",
-        email: "hello@opsknight.com",
-        issues: "https://github.com/OpsKnight/OpsKnight/issues",
-        discussions: "https://github.com/OpsKnight/OpsKnight/discussions",
-        releases: "https://github.com/OpsKnight/OpsKnight/releases",
-        contributing: "https://github.com/OpsKnight/OpsKnight/blob/main/CONTRIBUTING.md",
-        license: "https://github.com/OpsKnight/OpsKnight/blob/main/LICENSE",
-        security: "https://github.com/OpsKnight/OpsKnight/security",
+        email: "help@opsknight.com",
+        issues: "https://github.com/Dushyant-rahangdale/OpsKnight/issues",
+        discussions: "https://github.com/Dushyant-rahangdale/OpsKnight/discussions",
+        releases: "https://github.com/Dushyant-rahangdale/OpsKnight/releases",
+        contributing: "https://github.com/Dushyant-rahangdale/OpsKnight/blob/main/CONTRIBUTING.md",
+        license: "https://github.com/Dushyant-rahangdale/OpsKnight/blob/main/LICENSE",
+        security: "https://github.com/Dushyant-rahangdale/OpsKnight/security",
     },
 
     // Assets

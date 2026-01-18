@@ -35,6 +35,7 @@ import { SidebarItem } from "@/lib/docs/sidebar"
 import { DocsVersionSwitcher } from "@/components/docs/DocsVersionSwitcher"
 import { DocsSearch } from "@/components/docs/DocsSearch"
 import { cn } from "@/lib/utils"
+import { BRAND } from "@/lib/brand"
 
 // Section configuration with icons and colors
 const SECTION_CONFIG: Record<string, {
@@ -318,7 +319,7 @@ export function NewDocsSidebar({ items, version }: { items: SidebarItem[], versi
 
                 {/* GitHub Link */}
                 <Link
-                    href="https://github.com/Dushyant-rahangdale/OpsKnight"
+                    href={BRAND.links.github}
                     target="_blank"
                     className="flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/20 text-xs text-emerald-400 hover:from-emerald-500/20 hover:to-cyan-500/20 transition-all group"
                 >

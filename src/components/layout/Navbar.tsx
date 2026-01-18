@@ -13,6 +13,7 @@ const navItems = [
     { label: "Pricing", href: "/#pricing" },
     { label: "Docs", href: "/docs" },
     { label: "Compare", href: "/compare" },
+    { label: "Contact", href: "/contact" },
 ];
 
 export function Navbar() {

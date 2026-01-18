@@ -4,6 +4,7 @@ import { getDocPage, getAllDocSlugs } from "@/lib/docs/content";
 import { DocsToc } from "@/components/docs/DocsToc";
 import { DOC_VERSIONS } from "@/lib/docs/versions";
 import { ChevronRight, Clock, BookOpen } from "lucide-react";
+import { BRAND } from "@/lib/brand";
 
 export const dynamicParams = false;
 export const dynamic = "force-static";
@@ -150,7 +151,7 @@ export default async function DocsPage({
             Last updated for {version}
           </p>
           <Link
-            href={`https://github.com/Dushyant-rahangdale/OpsKnight`}
+            href={BRAND.links.github}
             target="_blank"
             className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-emerald-400 transition-colors"
           >
