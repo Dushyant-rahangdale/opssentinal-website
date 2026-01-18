@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Montserrat, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { BRAND } from "@/lib/brand";
 import { ConditionalNavbar } from "@/components/layout/ConditionalNavbar";
 import { ConditionalFooter } from "@/components/layout/ConditionalFooter";
 
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
     template: `%s | ${BRAND.name}`,
   },
   description: BRAND.description,
-  keywords: BRAND.keywords,
+  keywords: [...BRAND.keywords],
   openGraph: {
     title: `${BRAND.name} | ${BRAND.tagline}`,
     description: BRAND.description,
