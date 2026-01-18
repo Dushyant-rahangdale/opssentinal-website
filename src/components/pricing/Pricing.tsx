@@ -2,7 +2,9 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { Check, Github, ArrowRight } from "lucide-react";
+import { BRAND } from "@/lib/brand";
 
 const features = [
     "Unlimited users",
@@ -34,7 +36,7 @@ export function Pricing() {
                         Free and <span className="gradient-text">open-source</span>
                     </h2>
                     <p className="text-foreground-secondary max-w-2xl mx-auto mb-6">
-                        OpsSentinal is free to self-host with all features included.
+                        {BRAND.name} is free to self-host with all features included.
                         No subscriptions, no limits.
                     </p>
 
@@ -86,14 +88,19 @@ export function Pricing() {
                         </div>
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link
-                                href="https://github.com/Dushyant-rahangdale/OpsSentinal"
-                                target="_blank"
-                                className="btn-primary inline-flex items-center justify-center gap-2 text-base px-8 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-400 hover:to-cyan-400 border-0 text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all"
+                            <Button
+                                asChild
+                                size="lg"
+                                className="text-base px-8 py-6 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-400 hover:to-cyan-400 border-0 text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all"
                             >
-                                <Github className="w-4 h-4" />
-                                Get Started
-                            </Link>
+                                <Link
+                                    href={BRAND.links.github}
+                                    target="_blank"
+                                >
+                                    <Github className="w-4 h-4 mr-2" />
+                                    Get Started
+                                </Link>
+                            </Button>
                         </div>
                     </div>
                 </motion.div>
@@ -108,7 +115,7 @@ export function Pricing() {
                     <p className="text-foreground-muted text-sm">
                         Licensed under{" "}
                         <a
-                            href="https://github.com/Dushyant-rahangdale/OpsSentinal/blob/main/LICENSE"
+                            href={BRAND.links.license}
                             target="_blank"
                             className="text-accent-blue hover:underline"
                         >

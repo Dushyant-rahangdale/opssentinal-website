@@ -16,7 +16,7 @@ export default function Home() {
       <Stats />
       <Integrations />
       <Comparison />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <SocialProof />
       <Pricing />
       <CTA />

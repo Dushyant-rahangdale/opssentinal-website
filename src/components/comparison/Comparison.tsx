@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Check, X, Minus, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { BRAND } from "@/lib/brand";
 
 const features = [
     { name: "Incident Management", opssentinal: true, pagerduty: true, opsgenie: true },
@@ -74,7 +75,7 @@ export function Comparison() {
                         Compare
                     </span>
                     <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                        Why choose OpsSentinal?
+                        Why choose {BRAND.name}?
                     </h2>
                     <p className="text-slate-400 max-w-2xl mx-auto text-lg">
                         See how we stack up against the competition. Full features, zero cost.
@@ -99,7 +100,7 @@ export function Comparison() {
                                     <th className="text-left py-6 px-4 text-slate-400 font-medium">Feature</th>
                                     <th className="py-6 px-4 text-center relative">
                                         <div className="inline-flex flex-col items-center gap-1">
-                                            <span className="text-emerald-400 font-bold text-lg">OpsSentinal</span>
+                                            <span className="text-emerald-400 font-bold text-lg">{BRAND.name}</span>
                                             <span className="text-2xl font-bold text-white">{pricing.opssentinal.price}</span>
                                             <span className="text-xs text-slate-500">{pricing.opssentinal.note}</span>
                                         </div>

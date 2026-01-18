@@ -6,35 +6,34 @@ import { TrendingUp, Clock, Shield, Zap } from "lucide-react";
 
 const stats = [
     {
-        label: "Faster MTTR",
-        value: 60,
-        suffix: "%",
-        description: "Average reduction in mean time to resolve",
+        label: "Rapid Setup",
+        value: 5,
+        suffix: "m",
+        description: "Deploy in minutes with Docker or K8s",
         icon: Clock,
         color: "from-emerald-500 to-cyan-500",
     },
     {
-        label: "Incidents Managed",
-        value: 10000,
-        suffix: "+",
-        description: "Across all deployments worldwide",
+        label: "Event Throughput",
+        value: 1000,
+        suffix: "/s",
+        description: "High-performance ingestion engine",
         icon: TrendingUp,
         color: "from-blue-500 to-indigo-500",
     },
     {
-        label: "Uptime Guarantee",
-        value: 99.9,
+        label: "Data Control",
+        value: 100,
         suffix: "%",
-        description: "Self-hosted reliability you control",
+        description: "Full ownership of your data and infrastructure",
         icon: Shield,
         color: "from-amber-500 to-orange-500",
     },
     {
-        label: "Alert Latency",
-        value: 100,
-        suffix: "ms",
-        prefix: "<",
-        description: "From detection to notification",
+        label: "Integrations",
+        value: 20,
+        suffix: "+",
+        description: "Connect with your favorite tools instantly",
         icon: Zap,
         color: "from-rose-500 to-pink-500",
     },
@@ -91,7 +90,7 @@ function StatCard({ stat, index }: { stat: typeof stats[0]; index: number }) {
 
                 {/* Value */}
                 <div className="text-4xl md:text-5xl font-bold text-white mb-2">
-                    <AnimatedCounter value={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
+                    <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                 </div>
 
                 {/* Label */}

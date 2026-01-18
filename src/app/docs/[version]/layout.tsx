@@ -3,6 +3,7 @@ import Image from "next/image";
 import { PropsWithChildren } from "react";
 import { getSidebar } from "@/lib/docs/sidebar";
 import { NewDocsSidebar } from "@/components/docs/NewDocsSidebar";
+import { DocsSearch } from "@/components/docs/DocsSearch";
 import { DOC_VERSIONS } from "@/lib/docs/versions";
 import { notFound } from "next/navigation";
 import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
@@ -33,7 +34,12 @@ export default async function DocsLayout({
             <span className="text-slate-600">/</span>
             <span className="font-medium text-white">Documentation</span>
           </nav>
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex items-center gap-4">
+            {/* Search */}
+            <div className="hidden md:block w-64 lg:w-80">
+              <DocsSearch version={version} />
+            </div>
+
             <span className="hidden sm:flex items-center gap-1.5 px-2 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>

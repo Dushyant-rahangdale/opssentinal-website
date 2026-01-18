@@ -121,9 +121,9 @@ export const FEATURES = [
 
 // Stats for social proof
 export const STATS = [
-    { label: "Alerts Processed", value: "1.2M+", color: "rose" },
-    { label: "Avg Response", value: "<100ms", color: "amber" },
-    { label: "Uptime", value: "99.99%", color: "emerald" },
+    { label: "Event Capacity", value: "Unlimited", color: "rose" },
+    { label: "Setup Time", value: "~5m", color: "amber" },
+    { label: "Data Privacy", value: "100%", color: "emerald" },
 ] as const;
 
 // Comparison competitors

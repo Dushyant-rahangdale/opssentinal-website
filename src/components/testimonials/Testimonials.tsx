@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Quote, Star } from "lucide-react";
+import { BRAND } from "@/lib/brand";
 
 const testimonials = [
     {
@@ -21,7 +22,7 @@ const testimonials = [
         rating: 5,
     },
     {
-        quote: "OpsSentinal's integration ecosystem is impressive. We connected all our monitoring tools in under an hour. The webhook system is chef's kiss.",
+        quote: `${BRAND.name}'s integration ecosystem is impressive. We connected all our monitoring tools in under an hour. The webhook system is chef's kiss.`,
         author: "Emily Rodriguez",
         role: "DevOps Manager",
         company: "CloudNative Inc",
@@ -101,7 +102,7 @@ export function Testimonials() {
                         Loved by engineering teams
                     </h2>
                     <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-                        See what platform teams and SREs are saying about OpsSentinal.
+                        See what platform teams and SREs are saying about {BRAND.name}.
                     </p>
                 </motion.div>
 
@@ -120,7 +121,7 @@ export function Testimonials() {
                     className="text-center mt-16"
                 >
                     <p className="text-slate-500 text-sm">
-                        Join the growing community of teams using OpsSentinal for incident management.
+                        Join the growing community of teams using {BRAND.name} for incident management.
                     </p>
                 </motion.div>
             </div>

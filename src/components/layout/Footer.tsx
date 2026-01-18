@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Github, Heart, Twitter, Mail, ExternalLink, ArrowUpRight } from "lucide-react";
+import { BRAND } from "@/lib/brand";
 
 const footerLinks = {
     product: [
@@ -14,18 +15,18 @@ const footerLinks = {
     resources: [
         { label: "Documentation", href: "/docs" },
         { label: "API Reference", href: "/docs/v1/api" },
-        { label: "Changelog", href: "https://github.com/Dushyant-rahangdale/OpsSentinal/releases", external: true },
-        { label: "Roadmap", href: "https://github.com/Dushyant-rahangdale/OpsSentinal/projects", external: true },
+        { label: "Changelog", href: BRAND.links.releases, external: true },
+        { label: "Roadmap", href: `${BRAND.links.github}/projects`, external: true },
     ],
     community: [
-        { label: "GitHub", href: "https://github.com/Dushyant-rahangdale/OpsSentinal", external: true },
-        { label: "Discussions", href: "https://github.com/Dushyant-rahangdale/OpsSentinal/discussions", external: true },
-        { label: "Issues", href: "https://github.com/Dushyant-rahangdale/OpsSentinal/issues", external: true },
-        { label: "Contributing", href: "https://github.com/Dushyant-rahangdale/OpsSentinal/blob/main/CONTRIBUTING.md", external: true },
+        { label: "GitHub", href: BRAND.links.github, external: true },
+        { label: "Discussions", href: BRAND.links.discussions, external: true },
+        { label: "Issues", href: BRAND.links.issues, external: true },
+        { label: "Contributing", href: BRAND.links.contributing, external: true },
     ],
     legal: [
-        { label: "License (AGPL-3.0)", href: "https://github.com/Dushyant-rahangdale/OpsSentinal/blob/main/LICENSE", external: true },
-        { label: "Security", href: "https://github.com/Dushyant-rahangdale/OpsSentinal/security", external: true },
+        { label: "License (AGPL-3.0)", href: BRAND.links.license, external: true },
+        { label: "Security", href: BRAND.links.security, external: true },
     ],
 };
 
@@ -48,7 +49,7 @@ export function Footer() {
                                     <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 group-hover:border-emerald-500/30 transition-all">
                                         <Image
                                             src="/logo-compressed.png"
-                                            alt="OpsSentinal"
+                                            alt={BRAND.name}
                                             width={28}
                                             height={28}
                                             className="w-7 h-7 object-contain"
@@ -56,7 +57,7 @@ export function Footer() {
                                     </div>
                                 </div>
                                 <div>
-                                    <span className="text-lg font-bold text-white">OpsSentinal</span>
+                                    <span className="text-lg font-bold text-white">{BRAND.name}</span>
                                     <p className="text-[10px] text-emerald-500/70 font-medium uppercase tracking-wider">
                                         Open Source Incident Response
                                     </p>
@@ -70,7 +71,7 @@ export function Footer() {
                             {/* Social Links */}
                             <div className="mt-6 flex items-center gap-3">
                                 <Link
-                                    href="https://github.com/Dushyant-rahangdale/OpsSentinal"
+                                    href={BRAND.links.github}
                                     target="_blank"
                                     className="p-2 rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all"
                                     aria-label="GitHub"
@@ -78,7 +79,7 @@ export function Footer() {
                                     <Github className="w-4 h-4" />
                                 </Link>
                                 <Link
-                                    href="https://twitter.com/opssentinal"
+                                    href={BRAND.links.twitter}
                                     target="_blank"
                                     className="p-2 rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all"
                                     aria-label="Twitter"
@@ -86,7 +87,7 @@ export function Footer() {
                                     <Twitter className="w-4 h-4" />
                                 </Link>
                                 <Link
-                                    href="mailto:hello@opssentinal.io"
+                                    href={`mailto:${BRAND.links.email}`}
                                     className="p-2 rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all"
                                     aria-label="Email"
                                 >
@@ -96,7 +97,7 @@ export function Footer() {
 
                             {/* Sponsor CTA */}
                             <Link
-                                href="https://github.com/sponsors/Dushyant-rahangdale"
+                                href={BRAND.links.sponsor}
                                 target="_blank"
                                 className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-pink-500/10 to-rose-500/10 border border-pink-500/20 text-pink-400 text-sm font-medium hover:from-pink-500/20 hover:to-rose-500/20 transition-all group"
                             >
@@ -193,8 +194,7 @@ export function Footer() {
                 <div className="py-6 border-t border-white/5">
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                         <div className="flex items-center gap-2 text-sm text-slate-500">
-                            <span>© {new Date().getFullYear()} OpsSentinal.</span>
-                            <span className="hidden sm:inline">•</span>
+                            <span>© {new Date().getFullYear()} {BRAND.name}.</span>
                             <span className="hidden sm:inline">Open source under AGPL-3.0</span>
                         </div>
 
@@ -207,7 +207,7 @@ export function Footer() {
                                 In active development
                             </span>
                             <Link
-                                href="https://github.com/Dushyant-rahangdale/OpsSentinal"
+                                href={BRAND.links.github}
                                 target="_blank"
                                 className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-emerald-400 transition-colors"
                             >

@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { BRAND } from "@/lib/brand";
 
 type CellValue = boolean | string;
 
@@ -71,7 +72,7 @@ const vendors: Record<VendorKey, Vendor> = {
         notes: "Pro Plan + On-call addon. Prices vary by volume.",
     },
     opssentinal: {
-        name: "OpsSentinal",
+        name: BRAND.name,
         price: 0,
         unit: "forever",
         notes: "100% Free & Open Source. Self-hosted or hosted by you.",
@@ -84,7 +85,7 @@ const statCards: StatCard[] = [
     {
         label: "Cost",
         value: "$0/user",
-        description: "OpsSentinal has no per-seat pricing or add-ons.",
+        description: `${BRAND.name} has no per-seat pricing or add-ons.`,
         tone: "from-emerald-500/30 to-emerald-500/0",
         icon: Gauge,
     },
@@ -113,7 +114,7 @@ const statCards: StatCard[] = [
 
 const decisionGuides = [
     {
-        title: "Choose OpsSentinal if...",
+        title: `Choose ${BRAND.name} if...`,
         bullets: [
             "You need on-call, alerting, and postmortems without per-seat costs",
             "You want to self-host, customize workflows, or ship new integrations",
@@ -296,41 +297,12 @@ const comparisonSections: ComparisonSection[] = [
     },
 ];
 
-const scorecard: ScoreRow[] = [
-    {
-        dimension: "Cost predictability",
-        opssentinal: 5,
-        pagerduty: 2,
-        incidentio: 3,
-        opsgenie: 2,
-    },
-    {
-        dimension: "Ownership",
-        opssentinal: 5,
-        pagerduty: 1,
-        incidentio: 1,
-        opsgenie: 1,
-    },
-    {
-        dimension: "Enterprise add-ons",
-        opssentinal: 4,
-        pagerduty: 5,
-        incidentio: 4,
-        opsgenie: 3,
-    },
-    {
-        dimension: "Speed to value",
-        opssentinal: 4,
-        pagerduty: 4,
-        incidentio: 5,
-        opsgenie: 4,
-    },
-];
+
 
 const migrationSteps = [
     {
         title: "Inventory current tooling",
-        detail: "List alert sources, routes, and team schedules to mirror in OpsSentinal.",
+        detail: `List alert sources, routes, and team schedules to mirror in ${BRAND.name}.`,
     },
     {
         title: "Import schedules",
@@ -348,7 +320,7 @@ const migrationSteps = [
 
 const faqs = [
     {
-        question: "Is OpsSentinal production-ready for larger teams?",
+        question: `Is ${BRAND.name} production-ready for larger teams?`,
         answer:
             "Yes. Teams can self-host on any Kubernetes or VM stack and scale independently of per-seat costs.",
     },
@@ -360,7 +332,7 @@ const faqs = [
     {
         question: "Do we lose enterprise features?",
         answer:
-            "OpsSentinal covers on-call, escalations, postmortems, and status pages without add-ons.",
+            `${BRAND.name} covers on-call, escalations, postmortems, and status pages without add-ons.`,
     },
 ];
 
@@ -454,7 +426,7 @@ export default function ComparePage() {
                                 variants={itemMotion}
                                 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6"
                             >
-                                The full OpsSentinal comparison breakdown
+                                The full {BRAND.name} comparison breakdown
                             </motion.h1>
                             <motion.p
                                 variants={itemMotion}
@@ -578,7 +550,7 @@ export default function ComparePage() {
                         <div className="mt-8 grid gap-4 md:grid-cols-[1.2fr_0.8fr]">
                             <div className="bg-emerald-500/10 rounded-xl p-4">
                                 <p className="text-lg font-medium text-emerald-300">
-                                    You could save <span className="font-bold">${annualSavings.toLocaleString()} per year</span> by switching to OpsSentinal.
+                                    You could save <span className="font-bold">${annualSavings.toLocaleString()} per year</span> by switching to {BRAND.name}.
                                 </p>
                             </div>
                             <div className="bg-slate-950/70 rounded-xl p-4 text-sm text-slate-300 border border-white/10">
@@ -611,51 +583,7 @@ export default function ComparePage() {
                     </div>
                 </section>
 
-                {/* Scorecard */}
-                <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-                    <div className="rounded-3xl border border-white/10 bg-slate-900/60 p-8 md:p-10">
-                        <div className="flex items-center gap-3 mb-6">
-                            <Gauge className="w-6 h-6 text-emerald-300" />
-                            <h2 className="text-2xl font-bold">Decision scorecard</h2>
-                        </div>
-                        <div className="grid md:grid-cols-5 gap-4 items-center text-xs text-slate-400 uppercase tracking-[0.2em] mb-4">
-                            <div className="md:col-span-1">Dimension</div>
-                            {vendorOrder.map((vendorKey) => (
-                                <div key={`score-head-${vendorKey}`} className="md:col-span-1 text-center">
-                                    {vendors[vendorKey].name}
-                                </div>
-                            ))}
-                        </div>
-                        <div className="space-y-6">
-                            {scorecard.map((row) => (
-                                <div key={row.dimension} className="grid md:grid-cols-5 gap-4 items-center">
-                                    <div className="md:col-span-1 text-sm font-medium text-slate-300">
-                                        {row.dimension}
-                                    </div>
-                                    {vendorOrder.map((vendorKey) => {
-                                        const score = row[vendorKey];
-                                        return (
-                                            <div key={`${row.dimension}-${vendorKey}`} className="md:col-span-1">
-                                                <div className="flex items-center gap-2">
-                                                    <div className="w-full h-2 rounded-full bg-white/10">
-                                                        <div
-                                                            className={`h-2 rounded-full ${vendorKey === "opssentinal"
-                                                                ? "bg-emerald-400"
-                                                                : "bg-white/40"
-                                                                }`}
-                                                            style={{ width: `${score * 20}%` }}
-                                                        />
-                                                    </div>
-                                                    <span className="text-xs text-slate-400 min-w-[1.5rem]">{score}/5</span>
-                                                </div>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+
 
                 {/* Feature Comparison */}
                 <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
@@ -725,7 +653,7 @@ export default function ComparePage() {
                         <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-6">
                             <div className="flex items-center gap-2 mb-4">
                                 <BookOpen className="w-5 h-5 text-emerald-300" />
-                                <h3 className="font-semibold">OpsSentinal deep dive</h3>
+                                <h3 className="font-semibold">{BRAND.name} deep dive</h3>
                             </div>
                             <ul className="space-y-3 text-sm text-slate-200">
                                 <li>Open-source repo with full auditability and customization.</li>
@@ -799,7 +727,7 @@ export default function ComparePage() {
                 {/* CTA */}
                 <div className="mt-16 text-center">
                     <Link
-                        href="https://github.com/Dushyant-rahangdale/OpsSentinal"
+                        href={BRAND.links.github}
                         target="_blank"
                         className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white font-semibold transition-all hover:scale-105"
                     >

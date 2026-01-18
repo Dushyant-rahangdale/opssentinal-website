@@ -20,6 +20,7 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://opssentinal.com"),
   title: "OpsSentinal | Open-Source Incident Management Platform",
   description:
     "The complete open-source platform for on-call management, incident response, and status pages. Self-hosted, extensible, and built for DevOps & SRE teams.",

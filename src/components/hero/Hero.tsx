@@ -10,25 +10,25 @@ import { BRAND } from "@/lib/brand";
 // Floating metric cards data
 const floatingCards = [
     {
-        icon: Bell,
-        label: "Alerts Processed",
-        value: "1.2M+",
+        icon: Activity,
+        label: "Event Capacity",
+        value: "Unlimited",
         color: "from-rose-500 to-pink-500",
         position: "top-[15%] -left-[5%]",
         delay: 0.6,
     },
     {
         icon: Clock,
-        label: "Avg Response",
-        value: "<100ms",
+        label: "Setup Time",
+        value: "~5m",
         color: "from-amber-500 to-orange-500",
         position: "top-[60%] -left-[8%]",
         delay: 0.8,
     },
     {
-        icon: CheckCircle,
-        label: "Uptime",
-        value: "99.99%",
+        icon: Shield,
+        label: "Data Privacy",
+        value: "100%",
         color: "from-emerald-500 to-cyan-500",
         position: "top-[35%] -right-[5%]",
         delay: 1.0,
@@ -143,27 +143,7 @@ export function Hero() {
                             transition={{ delay: 0.3, duration: 0.5 }}
                             className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-3"
                         >
-                            <Link
-                                href={BRAND.links.github}
-                                target="_blank"
-                                className="group relative h-12 px-6 text-sm font-semibold rounded-full w-full sm:w-auto flex items-center justify-center gap-2 overflow-hidden"
-                            >
-                                {/* Gradient background */}
-                                <span className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-cyan-500" />
-                                <span className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <span className="relative flex items-center gap-2 text-slate-950">
-                                    <Github className="w-4 h-4" />
-                                    Star on GitHub
-                                    <Star className="w-3.5 h-3.5 fill-current opacity-70" />
-                                </span>
-                            </Link>
-                            <Link
-                                href="/docs"
-                                className="group h-12 px-6 text-sm font-medium rounded-full bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-white/20 backdrop-blur-sm transition-all w-full sm:w-auto flex items-center justify-center gap-2"
-                            >
-                                Get Started
-                                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                            </Link>
+
                         </motion.div>
 
                         {/* Trust Badges */}

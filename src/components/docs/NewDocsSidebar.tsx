@@ -283,10 +283,12 @@ export function NewDocsSidebar({ items, version }: { items: SidebarItem[], versi
                     <DocsVersionSwitcher currentVersion={version} />
                 </div>
 
-                {/* Search */}
-                <div className="mt-2 px-2">
+                {/* Search - Mobile Only */}
+                <div className="mt-2 px-2 md:hidden">
                     <DocsSearch version={version} />
                 </div>
+
+
             </SidebarHeader>
 
             {/* Navigation */}

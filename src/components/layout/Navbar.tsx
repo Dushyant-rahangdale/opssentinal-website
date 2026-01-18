@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { Menu, X, Github, Heart, ArrowRight, Sparkles } from "lucide-react";
+import { BRAND } from "@/lib/brand";
 
 const navItems = [
     { label: "Features", href: "/#features" },
@@ -30,10 +31,10 @@ export function Navbar() {
                     <div className="flex items-center justify-center gap-2 py-1.5 text-xs">
                         <Sparkles className="w-3 h-3 text-emerald-400" />
                         <span className="text-slate-400">
-                            OpsSentinal is in active development.
+                            {BRAND.name} is in active development.
                         </span>
                         <Link
-                            href="https://github.com/Dushyant-rahangdale/OpsSentinal"
+                            href={BRAND.links.github}
                             target="_blank"
                             className="inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 font-medium transition-colors"
                         >
@@ -54,7 +55,7 @@ export function Navbar() {
                             <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 group-hover:border-emerald-500/30 transition-all shadow-lg">
                                 <Image
                                     src="/logo-compressed.png"
-                                    alt="OpsSentinal"
+                                    alt={BRAND.name}
                                     width={24}
                                     height={24}
                                     className="w-6 h-6 object-contain"
@@ -63,7 +64,7 @@ export function Navbar() {
                         </div>
                         <div className="flex flex-col">
                             <span className="text-sm font-bold tracking-tight text-white group-hover:text-emerald-50 transition-colors">
-                                OpsSentinal
+                                {BRAND.name}
                             </span>
                             <span className="text-[9px] text-emerald-500/70 font-medium uppercase tracking-wider hidden sm:block">
                                 Incident Response
@@ -89,7 +90,7 @@ export function Navbar() {
                     {/* Desktop CTAs */}
                     <div className="hidden md:flex items-center gap-2">
                         <Link
-                            href="https://github.com/sponsors/Dushyant-rahangdale"
+                            href={BRAND.links.sponsor}
                             target="_blank"
                             className="group flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-pink-400 hover:text-pink-300 rounded-full transition-colors"
                         >
@@ -97,7 +98,7 @@ export function Navbar() {
                             <span>Sponsor</span>
                         </Link>
                         <Link
-                            href="https://github.com/Dushyant-rahangdale/OpsSentinal"
+                            href={BRAND.links.github}
                             target="_blank"
                             className="flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-slate-400 hover:text-white transition-colors"
                         >
@@ -148,7 +149,7 @@ export function Navbar() {
                             ))}
                             <div className="flex flex-col gap-3 p-4 mt-3 border-t border-white/10">
                                 <Link
-                                    href="https://github.com/sponsors/Dushyant-rahangdale"
+                                    href={BRAND.links.sponsor}
                                     target="_blank"
                                     className="flex items-center gap-2 text-pink-400 hover:text-pink-300 text-sm font-medium"
                                     onClick={() => setIsOpen(false)}
@@ -157,7 +158,7 @@ export function Navbar() {
                                     <span>Sponsor Project</span>
                                 </Link>
                                 <Link
-                                    href="https://github.com/Dushyant-rahangdale/OpsSentinal"
+                                    href={BRAND.links.github}
                                     target="_blank"
                                     className="flex items-center gap-2 text-slate-400 hover:text-white text-sm font-medium"
                                     onClick={() => setIsOpen(false)}
