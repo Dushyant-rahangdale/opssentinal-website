@@ -59,13 +59,14 @@ docker compose up -d
 
 ### Step 4: Create Admin User
 
-```bash
-docker exec -it opsknight_app npm run opsknight -- \
-  --user "Admin" \
-  --email admin@example.com \
-  --password SecurePass123! \
-  --role admin
-```
+Open `http://localhost:3000` in your browser. You'll be automatically redirected to `/setup` where you can create your admin account:
+
+1. Enter your **Name**
+2. Enter your **Email**
+3. Click **Create Admin Account**
+4. **Important**: Copy the generated password immediately — it's shown only once
+
+After setup, log in with your email and the generated password.
 
 ---
 

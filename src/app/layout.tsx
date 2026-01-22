@@ -61,6 +61,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body
         className={`${manrope.variable} ${jetBrainsMono.variable} antialiased bg-background text-foreground`}
+        suppressHydrationWarning
       >
         <ConditionalNavbar />
         <main>{children}</main>

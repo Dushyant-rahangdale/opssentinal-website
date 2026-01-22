@@ -1,73 +1,83 @@
 ---
 order: 2
+title: Service Directory
+description: Centralized registry for health monitoring and ownership.
 ---
 
-# Services
+# Service Directory
 
-Services represent the systems, applications, or dependencies you want to monitor.
+The **Service Directory** is the foundational registry of your infrastructure.
 
-## What is a Service?
+### Why is this needed?
+Without a Service Directory, alerts are "orphans" with no context. You might know *something* is broken, but you won't know **who owns it**, **how critical it is**, or **where it lives**. This page provides the **Context Map** for every incident, linking technical failures to human owners.
 
-A service can be:
+![Service Directory Header](/service-directory-header.png)
 
-- APIs and microservices
-- Databases
-- Infrastructure components
-- Third-party dependencies
-- Business workflows
+## 1. Unified Health Dashboard
 
-## Create a Service
+The top panel offers an immediate SITREP (Situation Report) of your infrastructure quality. Metrics are typically calculated over a **30-day window** (configurable via retention policy).
 
-1. Go to **Services**
-2. Click **+ New Service**
-3. Fill in:
+*   **Total Services**: The complete count of tracked microservices and monoliths.
+*   **Operational**: Services with healthy uptime and no active issues.
+*   **Degraded**: Services experiencing minor issues or warning-level incidents.
+*   **Critical**: Services currently down or facing P1/P2 incidents.
 
-| Field             | Description                 | Required |
-| ----------------- | --------------------------- | -------- |
-| Name              | Unique service name         | ✅       |
-| Description       | Short summary               | -        |
-| Escalation Policy | How incidents are escalated | -        |
+> [!NOTE]
+> **Noise Reduction**: Active incident counts and status calculations automatically exclude "Snoozed" and "Suppressed" incidents, ensuring you only see actionable problems.
 
-## Integrations
+---
 
-Each service can have multiple integrations. The Events API integration is the default entry point.
+## 2. Health & Status Logic
 
-```bash
-curl -X POST https://your-ops.com/api/events \
-  -H "Content-Type: application/json" \
-  -d '{
-    "routing_key": "YOUR_SERVICE_ROUTING_KEY",
-    "event_action": "trigger",
-    "dedup_key": "unique-alert-id",
-    "payload": {
-      "summary": "Database connection timeout",
-      "source": "monitoring",
-      "severity": "critical"
-    }
-  }'
-```
+Service health is dynamic and determined in real-time by the severity of active incidents.
 
-## Severity Levels
+| Status | Visual | Trigger Condition | Action Required |
+| :--- | :--- | :--- | :--- |
+| **Operational** | <span class="text-emerald-600 font-bold border px-1 rounded">Green</span> | **0** active incidents. | None. All systems normal. |
+| **Degraded** | <span class="text-amber-600 font-bold border px-1 rounded">Yellow</span> | **1+** active incidents, but **NONE** are Critical (e.g., Low/Medium urgency). | Monitor closely. Ack if necessary. |
+| **Critical** | <span class="text-red-600 font-bold border px-1 rounded">Red</span> | **1+** active **Critical (High Urgency)** incident. | **Immediate Action**. PagerDuty/On-Call notified. |
 
-| Severity   | Description       |
-| ---------- | ----------------- |
-| `critical` | Service is down   |
-| `error`    | Significant issue |
-| `warning`  | Potential problem |
-| `info`     | Informational     |
+---
 
-## Health Status
+## 3. Filters & Discovery
 
-Service status updates based on incident severity:
+Quickly locate the needle in the haystack with the filter interface.
 
-| Status          | Meaning                   |
-| --------------- | ------------------------- |
-| 🟢 Operational  | No active incidents       |
-| 🟡 Degraded     | Active warning incidents  |
-| 🔴 Major Outage | Active critical incidents |
+![Service List and Filters](/service-directory-list.png)
 
-## Best Practices
+### Search & Sort
+*   **Deep Search**: Type to filter by **Service Name** or **Description**.
+*   **Team Filtering**: Dropdown to isolate services owned by specific squads (e.g., "Customer Success", "Data & AI").
+*   **Smart Sorting**:
+    *   `Name (A-Z)`: Directory view.
+    *   `Status Health`: Bubbles critical services to the top of the list.
+    *   `Most Incidents`: Identifies your "noisiest" services based on incident volume.
 
-- Use consistent naming (e.g., `api-gateway`, `user-service`).
-- Assign an escalation policy for production services.
-- Group services by team ownership.
+---
+
+## 4. Creating & Configuring Services
+
+To add a new service, click **[ + Create ]** in the top right.
+
+### Required Configuration
+*   **Service Name**: Must be unique across the organization.
+*   **Owner Team**: The specific squad responsible for this service (e.g., "Platform Team").
+
+### Optional Metadata
+*   **Description**: Brief summary of the service's role.
+*   **Region**: Hosting location (e.g., `us-east-1`, `eu-west-1`). Active incidents will display this region context.
+*   **SLA Tier**: Criticality level (`Platinum 99.99%`, `Gold 99.9%`, etc.). Used for reporting and prioritizing fixes.
+*   **Escalation Policy**: Determines who gets paged when this service fails.
+
+> [!TIP]
+> **Integrations**: After creation, go to **Settings > Integrations** to connect tools like Datadog, Prometheus, or generic Webhooks to automatically trigger incidents.
+
+---
+
+## 5. Service Cards
+
+The list view is designed for scannability. Each card acts as a high-density dashboard.
+
+*   **Status Border**: The left-hand border is color-coded for instant health recognition while scrolling.
+*   **Opening State**: Clicking any card shows a "Opening..." loading overlay, providing immediate visual feedback.
+*   **Meta Details**: Displays Region, SLA Tier, and specific count of open incidents (e.g., "2 active incidents").
