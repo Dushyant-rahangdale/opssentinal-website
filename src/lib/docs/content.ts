@@ -27,8 +27,12 @@ function isMarkdownFile(fileName: string) {
 
 function normalizeSlugParts(parts: string[]) {
   const cleaned = parts.filter(Boolean).map(part => part.replace(/\.mdx?$/, ""));
-  if (cleaned.length === 1 && cleaned[0].toLowerCase() === "readme") {
-    return [];
+  // Remove trailing README or index
+  if (cleaned.length > 0) {
+    const last = cleaned[cleaned.length - 1].toLowerCase();
+    if (last === "readme" || last === "index") {
+      cleaned.pop();
+    }
   }
   return cleaned;
 }

@@ -14,7 +14,9 @@ export async function generateStaticParams() {
   for (const version of DOC_VERSIONS) {
     const slugs = getAllDocSlugs(version.id);
     for (const slug of slugs) {
-      params.push({ version: version.id, slug });
+      if (slug.length > 0) {
+        params.push({ version: version.id, slug });
+      }
     }
   }
   return params;

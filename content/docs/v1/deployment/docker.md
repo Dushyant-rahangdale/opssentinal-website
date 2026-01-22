@@ -24,12 +24,9 @@ cp env.example .env
 
 # Start services
 docker compose up -d
-
-# Create admin user
-docker exec -it opsknight_app npm run opsknight -- \
-  --user "Admin" --email admin@example.com \
-  --password SecurePass123! --role admin
 ```
+
+Open `http://localhost:3000` — you'll be directed to `/setup` to create your admin account.
 
 ## Required Configuration
 

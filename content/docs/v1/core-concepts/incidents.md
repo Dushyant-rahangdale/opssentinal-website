@@ -1,102 +1,90 @@
 ---
 order: 3
+title: Incident Management
+description: Master the Incident List, Bulk Actions, and SLAs.
 ---
 
-# Incidents
+# Incident Management
 
-Incidents track issues from trigger to resolution. They drive notifications, escalations, and reporting.
+The **Incident List** is the tactical workspace for responders.
 
-## Incident Lifecycle
+### Why is this needed?
+Alerts are typically noisy and raw; Incidents represent the actual "Work" to be done. This page turns chaotic noise into a structured queue. It ensures nothing slips through the cracks by enforcing **Assignment** (Who is fixing it?) and **SLAs** (When must it be fixed?).
 
-```
-TRIGGERED -> ACKNOWLEDGED -> RESOLVED
-     \-> SNOOZED
-     \-> ESCALATED
-```
+![Incident List Interface](/incident-list-v2.png)
 
-### Statuses
+## 1. The Interface at a Glance
 
-| Status           | Description                     |
-| ---------------- | ------------------------------- |
-| Triggered        | New incident, awaiting response |
-| Acknowledged     | Ownership assigned              |
-| Resolved         | Issue fixed                     |
-| Snoozed          | Temporarily silenced            |
-| Suppressed       | Matched a suppression rule      |
+Each row in the incident list is packed with real-time operational data.
 
-## Create Incidents
+### Visual State Indicators
+*   **Status Borders**: The left border color-codes the state at a glance:
+    *   <span class="text-red-500 font-bold">Red</span>: **Open** (Needs attention)
+    *   <span class="text-amber-500 font-bold">Amber</span>: **Acknowledged** (Someone is working on it)
+    *   <span class="text-emerald-500 font-bold">Green</span>: **Resolved** (Fixed)
+    *   <span class="text-slate-400 font-bold">Grey</span>: **Snoozed / Suppressed** (Hidden)
+*   **SLA Countdowns**: Two distinct SLAs are tracked:
+    *   **Time to Ack**: How long until someone *must* look at it.
+    *   **Time to Resolve**: How long until the issue *must* be fixed.
+    *   *Visuals*: Shows "20m left" (Warning) or "Breached" (Critical) badges inline.
 
-### Via API
+### Navigation & Interaction
+*   **Keyboard Navigation**: Use `Up` / `Down` arrows to highlight rows, and `Enter` or `Space` to open details.
+*   **Quick Preview**: Clicking a row shows an "Opening..." spinner overlay while pre-fetching data.
 
-```bash
-curl -X POST https://your-ops.com/api/events \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "routing_key": "SERVICE_ROUTING_KEY",
-    "event_action": "trigger",
-    "dedup_key": "cpu-high",
-    "payload": {
-      "summary": "CPU usage above 90%",
-      "source": "prometheus",
-      "severity": "warning"
-    }
-  }'
-```
+---
 
-### Via UI
+## 2. Filters & Deep Search
 
-1. Go to **Incidents**
-2. Click **+ New Incident**
-3. Fill in details and submit
+The filter bar allows for complex querying of the incident database.
 
-## Priority and Urgency
+*   **Deep Search**: Queries against `Title`, `Description`, and `Incident ID` (e.g., `#5A261`).
+*   **Context Filters**:
+    *   **Mine / My Teams**: Quickly toggle between your personal queue and your squad's workload.
+    *   **UrgencyChips**: Filter by specific `High`, `Medium`, or `Low` urgency levels.
+*   **URL Addressable**: Every filter state is reflected in the URL.
+    *   *Example*: `?urgency=HIGH&status=OPEN&sort=priority`
+    *   *Pro Tip*: Bookmark your team's specific view for distinct dashboards.
 
-| Priority | Response Time | Use Case             |
-| -------- | ------------- | -------------------- |
-| P1       | Immediate     | Production down      |
-| P2       | < 1 hour      | Major feature broken |
-| P3       | < 4 hours     | Degraded performance |
-| P4       | < 24 hours    | Minor issues         |
+---
 
-## Deduplication
+## 3. Bulk Actions & Triage
 
-The `dedup_key` groups related alerts into a single incident.
+Manage "Alert Storms" effectively with the sticky command bar.
 
-- Same key → update existing incident
-- New key → create new incident
+![Bulk Actions Bar](/bulk-actions.png)
 
-## Incident Actions
+### Selection Logic
+*   **Range Select**: Click one checkbox, then `Shift + Click` another to select the entire range.
+*   **Smart Hints**: The bar analyzes your selection and displays hints like *"Selected contains SUPPRESSED"* if you've accidentally grabbed hidden items.
 
-### Acknowledge
+### Command Reference
 
-```bash
-curl -X POST https://your-ops.com/api/events \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "routing_key": "SERVICE_ROUTING_KEY",
-    "event_action": "acknowledge",
-    "dedup_key": "cpu-high"
-  }'
-```
+| Action | Description |
+| :--- | :--- |
+| **Acknowledge** | Mark as seen. Stops escalation notifications. |
+| **Resolve** | Close the incident. |
+| **Reassign** | Transfer ownership to a **User** OR a **Team**. |
+| **Snooze** | Hide for a duration (15m, 30m, 1h, 4h, 8h, 24h). |
+| **Priority** | Mass-update severity (P1 - P5). |
+| **Urgency** | Update urgency classification (High/Medium/Low). |
+| **Status** | Force a specific status update. |
 
-### Resolve
+### Advanced Actions ("More" Menu)
+*   **Unsnooze**: Bring snoozed items back to the active queue immediately.
+*   **Suppress**: Mark as noise/false alarm (hides from default view without resolving).
+*   **Unsuppress**: Restore suppressed items.
+*   **Unacknowledge**: Revert an incident from Acknowledged back to Open (useful if accidental).
 
-```bash
-curl -X POST https://your-ops.com/api/events \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "routing_key": "SERVICE_ROUTING_KEY",
-    "event_action": "resolve",
-    "dedup_key": "cpu-high"
-  }'
-```
+---
 
-## Best Practices
+## 4. Inline Management
 
-- Use descriptive `dedup_key` values.
-- Add context in `payload.summary` and `custom_details`.
-- Resolve incidents when the issue clears.
-- Record notes during triage.
+You don't always need to open the full details page.
+
+*   **Quick Reassign**: Click the assignee avatar in the list to open a search popover. You can assign to:
+    *   **Specific Users** (Search by name/email)
+    *   **Entire Teams** (Search by team name)
+*   **Status Toggles**: Use the "meatball" menu (`...`) on the right of any row to quickly **Resolve**, **Snooze**, or **Ack** that single item.
+
+    ![Incident Actions Menu](/incident-actions-menu.png)

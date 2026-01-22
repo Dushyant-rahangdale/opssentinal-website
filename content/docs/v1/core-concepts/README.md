@@ -1,46 +1,212 @@
 ---
 order: 2
+title: Core Concepts
+description: Master the fundamental building blocks of OpsKnight incident management
 ---
 
 # Core Concepts
 
-Understanding the fundamental building blocks of OpsKnight.
+Understanding OpsKnight's core concepts is essential for building an effective incident management workflow. This section explains how each component works, why it exists, and how they connect to form a complete system.
 
-## In This Section
+<!-- placeholder:core-concepts-overview -->
+<!-- Add: Visual diagram showing how all concepts interconnect -->
 
-| Concept                                         | Description                 |
-| ----------------------------------------------- | --------------------------- |
-| [Dashboard](./dashboard.md)                     | Command center overview     |
-| [Services](./services.md)                       | Systems you monitor         |
-| [Incidents](./incidents.md)                     | Alert lifecycle management  |
-| [Escalation Policies](./escalation-policies.md) | Multi-tier escalation       |
-| [Schedules](./schedules.md)                     | On-call rotations           |
-| [Teams](./teams.md)                             | User organization           |
-| [Users](./users.md)                             | User management and roles   |
-| [Integrations](./integrations.md)               | Connect alert sources       |
-| [Analytics](./analytics.md)                     | Metrics and insights        |
-| [Postmortems](./postmortems.md)                 | Incident reviews            |
-| [Status Page](./status-page.md)                 | Public status communication |
-| [Urgency Mapping](./urgency-mapping.md)         | Severity and response logic |
-| [Authentication & Security](./authentication-security.md) | Access controls and safety |
+---
 
-## How It All Connects
+## The Big Picture
+
+OpsKnight is built around a simple but powerful model: **Alerts become Incidents, Incidents trigger Escalations, Escalations notify People**.
 
 ```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Service   │────▶│   Incident  │────▶│   On-Call   │
-│             │     │             │     │   Person    │
-└─────────────┘     └─────────────┘     └─────────────┘
-       │                   │                   │
-       ▼                   ▼                   ▼
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│ Escalation  │     │  Timeline   │     │   Notify    │
-│   Policy    │     │             │     │   (SMS/Push)│
-└─────────────┘     └─────────────┘     └─────────────┘
+                    YOUR MONITORING STACK
+    ┌─────────────────────────────────────────────────┐
+    │  Datadog • Prometheus • CloudWatch • Sentry     │
+    │  GitHub Actions • Custom Webhooks • 20+ more    │
+    └─────────────────────────┬───────────────────────┘
+                              │
+                              ▼
+    ┌─────────────────────────────────────────────────┐
+    │                    SERVICES                      │
+    │  Your monitored systems with ownership & policy  │
+    │  API Gateway • Database • Payment Service        │
+    └─────────────────────────┬───────────────────────┘
+                              │
+                              ▼
+    ┌─────────────────────────────────────────────────┐
+    │                    INCIDENTS                     │
+    │  Actionable work items with lifecycle tracking   │
+    │  OPEN → ACKNOWLEDGED → RESOLVED                  │
+    └─────────────────────────┬───────────────────────┘
+                              │
+                              ▼
+    ┌─────────────────────────────────────────────────┐
+    │              ESCALATION POLICIES                 │
+    │  Multi-step notification chains with delays      │
+    │  Step 1 → Step 2 → Step 3 → Repeat               │
+    └─────────────────────────┬───────────────────────┘
+                              │
+                              ▼
+    ┌─────────────────────────────────────────────────┐
+    │                   SCHEDULES                      │
+    │  Who is on-call right now?                       │
+    │  Layers • Rotations • Overrides                  │
+    └─────────────────────────┬───────────────────────┘
+                              │
+                              ▼
+    ┌─────────────────────────────────────────────────┐
+    │              NOTIFICATIONS                       │
+    │  Multi-channel delivery until acknowledged       │
+    │  Email • SMS • Push • Slack • WhatsApp          │
+    └─────────────────────────────────────────────────┘
 ```
 
-1. **Services** represent systems (APIs, databases, etc.)
-2. **Incidents** are triggered when something goes wrong
-3. **Schedules** determine who is on-call
-4. **Escalation Policies** ensure incidents reach the right people
-5. **Teams** organize users by function or responsibility
+---
+
+## Concepts at a Glance
+
+| Concept | What It Is | Why It Matters |
+|---------|-----------|----------------|
+| [Dashboard](./dashboard.md) | Command center for real-time visibility | See the forest, not just the trees |
+| [Services](./services.md) | Systems you monitor with ownership | Alerts need context and routing |
+| [Incidents](./incidents.md) | Actionable work items from alerts | Track resolution from trigger to close |
+| [Escalation Policies](./escalation-policies.md) | Who gets notified and when | Ensure issues never fall through cracks |
+| [Schedules](./schedules.md) | On-call rotations and shifts | Fair distribution of on-call duty |
+| [Teams](./teams.md) | User groups with shared responsibility | Organize people and permissions |
+| [Users](./users.md) | Individuals with roles and preferences | Authentication and personalization |
+| [Analytics](./analytics.md) | Metrics, SLAs, and trends | Measure and improve performance |
+| [Postmortems](./postmortems.md) | Incident retrospectives | Learn from failures |
+| [Status Pages](./status-page.md) | Public service health communication | Transparency with customers |
+| [Integrations](./integrations.md) | Connections to monitoring tools | Route alerts from your stack |
+
+---
+
+## How Concepts Connect
+
+### The Alert-to-Resolution Flow
+
+1. **Alert Received**: A monitoring tool sends a webhook to OpsKnight
+2. **Service Identified**: The routing key maps the alert to a Service
+3. **Incident Created**: OpsKnight creates an Incident with deduplication
+4. **Escalation Started**: The Service's Escalation Policy is triggered
+5. **On-Call Found**: The Schedule determines who is currently on-call
+6. **Notification Sent**: The on-call person receives alerts via configured channels
+7. **Acknowledge**: The responder acknowledges, stopping further escalation
+8. **Resolve**: The incident is fixed and marked resolved
+
+### Key Relationships
+
+```
+Service ──────────────────┐
+    │                     │
+    ├── owns ────▶ Incidents
+    │                     │
+    └── uses ────▶ Escalation Policy
+                          │
+                          ├── Step 1 ──▶ Schedule ──▶ User (on-call)
+                          ├── Step 2 ──▶ User (backup)
+                          └── Step 3 ──▶ Team ──▶ All members
+```
+
+---
+
+## Terminology Quick Reference
+
+| Term | Definition |
+|------|------------|
+| **Alert** | Raw event from a monitoring tool (webhook payload) |
+| **Incident** | Actionable work item created from one or more alerts |
+| **Dedup Key** | Identifier to group related alerts into one incident |
+| **Urgency** | Impact level: HIGH, MEDIUM, or LOW |
+| **Priority** | Business priority: P1-P5 (most to least critical) |
+| **Escalation** | Process of notifying additional people over time |
+| **On-Call** | The person currently responsible for responding |
+| **Shift** | A time period when someone is on-call |
+| **Layer** | A rotation pattern within a schedule |
+| **Override** | Temporary change to normal on-call assignment |
+| **MTTA** | Mean Time To Acknowledge |
+| **MTTR** | Mean Time To Resolve |
+| **SLA** | Service Level Agreement (target response times) |
+
+---
+
+## Recommended Reading Order
+
+If you're new to OpsKnight, we recommend reading the concepts in this order:
+
+1. **[Services](./services.md)** — Start here to understand the foundation
+2. **[Incidents](./incidents.md)** — Learn the core workflow
+3. **[Escalation Policies](./escalation-policies.md)** — Understand notification routing
+4. **[Schedules](./schedules.md)** — Configure on-call rotations
+5. **[Teams](./teams.md)** — Organize your responders
+6. **[Dashboard](./dashboard.md)** — Master the command center
+7. **[Analytics](./analytics.md)** — Track and improve performance
+
+---
+
+## Deep Dives
+
+### For Incident Responders
+- [Incident Lifecycle](./incidents.md#incident-lifecycle) — Understand statuses and actions
+- [Bulk Actions](./incidents.md#bulk-actions) — Manage alert storms efficiently
+- [Mobile Access](../mobile/) — Respond from anywhere
+
+### For On-Call Managers
+- [Schedule Layers](./schedules.md#layers) — Build complex coverage patterns
+- [Overrides](./schedules.md#overrides) — Handle vacations and swaps
+- [Fair Rotation](./schedules.md#fair-rotation) — Balance on-call burden
+
+### For Operations Teams
+- [SLA Configuration](./analytics.md#sla-tracking) — Set response time targets
+- [Custom Fields](../administration/custom-fields.md) — Track additional metadata
+- [Integrations](./integrations.md) — Connect your monitoring stack
+
+### For Leadership
+- [Analytics Dashboard](./analytics.md#dashboard) — Executive metrics
+- [Status Pages](./status-page.md) — Customer communication
+- [Postmortems](./postmortems.md) — Organizational learning
+
+---
+
+## Common Patterns
+
+### Pattern 1: Simple Team Setup
+
+For small teams with straightforward needs:
+
+```
+1 Service → 1 Escalation Policy → 1 Schedule (weekly rotation)
+```
+
+### Pattern 2: Primary/Secondary Coverage
+
+For better redundancy:
+
+```
+1 Service → 1 Escalation Policy:
+    Step 1: Primary Schedule (immediate)
+    Step 2: Secondary Schedule (5 min delay)
+    Step 3: Manager (10 min delay)
+```
+
+### Pattern 3: Follow-the-Sun
+
+For global teams:
+
+```
+1 Service → 1 Escalation Policy:
+    Step 1: Schedule (auto-selects based on timezone)
+        Layer 1: US Team (9am-5pm PT)
+        Layer 2: EU Team (9am-5pm CET)
+        Layer 3: APAC Team (9am-5pm JST)
+```
+
+---
+
+## Next Steps
+
+Choose your path:
+
+- **New to incident management?** Start with [Services](./services.md)
+- **Setting up on-call?** Jump to [Schedules](./schedules.md)
+- **Connecting tools?** See [Integrations](./integrations.md)
+- **Measuring performance?** Explore [Analytics](./analytics.md)
