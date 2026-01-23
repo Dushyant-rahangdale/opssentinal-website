@@ -140,12 +140,12 @@ function CollapsibleSection({
             {/* Section Header - Clickable */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="w-full flex items-center justify-between px-2 py-2 rounded-lg hover:bg-white/5 transition-colors group"
+                className="w-full flex items-start justify-between px-2 py-3 rounded-lg hover:bg-white/5 transition-colors group h-auto"
             >
-                <div className="flex items-center gap-3">
+                <div className="flex items-start gap-3 flex-1 min-w-0">
                     {/* Icon with gradient background */}
                     <div className={cn(
-                        "p-1.5 rounded-lg transition-all",
+                        "p-1.5 rounded-lg transition-all shrink-0 mt-0.5",
                         hasActiveChild
                             ? `bg-gradient-to-br ${config?.gradient || "from-emerald-500 to-cyan-500"} shadow-lg`
                             : "bg-slate-800/80 group-hover:bg-slate-700"
@@ -159,7 +159,7 @@ function CollapsibleSection({
                     {/* Title */}
                     <SidebarGroupLabel
                         className={cn(
-                            "text-xs font-bold uppercase tracking-widest transition-colors p-0 m-0",
+                            "text-xs font-bold uppercase tracking-widest transition-colors p-0 m-0 whitespace-normal text-left leading-relaxed h-auto block w-full",
                             hasActiveChild ? config?.label : "text-slate-500 group-hover:text-slate-400"
                         )}
                     >
@@ -182,24 +182,28 @@ function CollapsibleSection({
                 <SidebarGroupContent className="mt-1">
                     <SidebarMenu>
                         {item.children?.map((child) => (
-                            <SidebarMenuItem key={child.title}>
+                            <SidebarMenuItem key={child.title} className="mb-1">
                                 <SidebarMenuButton
                                     asChild
                                     isActive={child.href === activePath}
                                     className={cn(
-                                        "ml-6 border-l-2 border-transparent text-slate-400 hover:text-white hover:bg-white/5 data-[active=true]:bg-white/10 data-[active=true]:text-white data-[active=true]:font-medium",
+                                        "ml-6 border-l-2 border-transparent text-slate-400 hover:text-white hover:bg-white/5 data-[active=true]:bg-white/10 data-[active=true]:text-white data-[active=true]:font-medium h-auto py-3 whitespace-normal items-start",
                                         config?.active
                                     )}
                                 >
                                     {child.href ? (
-                                        <Link href={child.href} className="flex items-center gap-2">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-current opacity-40" />
-                                            {child.title}
+                                        <Link href={child.href} className="flex items-start gap-3 leading-relaxed min-w-0">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-current opacity-40 shrink-0 mt-2.5" />
+                                            <span className="whitespace-normal break-words block min-w-0 flex-1">
+                                                {child.title}
+                                            </span>
                                         </Link>
                                     ) : (
-                                        <span className="flex items-center gap-2">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-current opacity-40" />
-                                            {child.title}
+                                        <span className="flex items-start gap-3 leading-relaxed min-w-0">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-current opacity-40 shrink-0 mt-2.5" />
+                                            <span className="whitespace-normal break-words block min-w-0 flex-1">
+                                                {child.title}
+                                            </span>
                                         </span>
                                     )}
                                 </SidebarMenuButton>
@@ -233,19 +237,29 @@ function renderSidebarItems(items: SidebarItem[], pathname: string, activePath: 
 
         // Standalone Item
         return (
-            <SidebarMenuItem key={item.title}>
+            <SidebarMenuItem key={item.title} className="mb-1">
                 <SidebarMenuButton
                     asChild
                     isActive={isActive}
                     className={cn(
-                        "border-l-2 border-transparent text-slate-400 hover:text-white hover:bg-white/5 data-[active=true]:bg-white/10 data-[active=true]:text-white",
+                        "border-l-2 border-transparent text-slate-400 hover:text-white hover:bg-white/5 data-[active=true]:bg-white/10 data-[active=true]:text-white h-auto py-3 whitespace-normal items-start",
                         config?.active
                     )}
                 >
                     {item.href ? (
-                        <Link href={item.href}>{item.title}</Link>
+                        <Link href={item.href} className="flex items-start gap-3 leading-relaxed min-w-0">
+                            <span className="w-1.5 h-1.5 rounded-full bg-current opacity-40 shrink-0 mt-2.5" />
+                            <span className="whitespace-normal break-words block min-w-0 flex-1">
+                                {item.title}
+                            </span>
+                        </Link>
                     ) : (
-                        <span>{item.title}</span>
+                        <span className="flex items-start gap-3 leading-relaxed min-w-0">
+                            <span className="w-1.5 h-1.5 rounded-full bg-current opacity-40 shrink-0 mt-2.5" />
+                            <span className="whitespace-normal break-words block min-w-0 flex-1">
+                                {item.title}
+                            </span>
+                        </span>
                     )}
                 </SidebarMenuButton>
             </SidebarMenuItem>

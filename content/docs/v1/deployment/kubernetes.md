@@ -69,7 +69,7 @@ metadata:
   name: opsknight-config
   namespace: opsknight
 data:
-  ENABLE_INTERNAL_CRON: 'true'
+
 ```
 
 > **Note:** Store secrets in `Secret` objects and keep the ConfigMap non-sensitive.
