@@ -24,6 +24,52 @@ Receive alerts from Elasticsearch Watcher or Kibana Alerts.
 5. URL: Paste the OpsKnight Webhook URL.
 6. Use this connector in your Rules/Actions.
 
+## Endpoint
+
+```
+POST /api/integrations/elastic?integrationId=YOUR_INTEGRATION_ID
+```
+
+## Payload Format
+
+Configure your Connector to send:
+
+```json
+{
+  "rule": { "name": "High CPU" },
+  "alert": {
+    "id": "123",
+    "severity": "critical",
+    "status": "active",
+    "reason": "CPU > 90%"
+  }
+}
+```
+
+## Event Mapping
+
+| Alert Status | OpsKnight Action |
+| ------------ | ---------------- |
+| `active`     | Trigger incident |
+| `recovered`  | Resolve incident |
+
+## Deduplication
+
+Dedup key is generated from `elastic-{alert.id}` or `elastic-{rule.id}`.
+
+## Testing
+
+### Using cURL
+
+```bash
+curl -X POST "https://YOUR_OPSKNIGHT_URL/api/integrations/elastic?integrationId=YOUR_ID" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "rule": { "name": "Test Rule" },
+    "alert": { "id": "test-1", "severity": "critical", "status": "active" }
+  }'
+```
+
 ## Alert Field Mapping
 
 OpsKnight extracts fields in this priority order:

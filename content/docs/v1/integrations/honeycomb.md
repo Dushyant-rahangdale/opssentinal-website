@@ -23,6 +23,46 @@ Receive trigger notifications from Honeycomb.
 4. URL: Paste the OpsKnight Webhook URL.
 5. Add this webhook as a recipient to your Triggers.
 
+## Endpoint
+
+```
+POST /api/integrations/honeycomb?integrationId=YOUR_INTEGRATION_ID
+```
+
+## Payload Format
+
+Honeycomb sends:
+
+```json
+{
+  "alert_name": "High Latency",
+  "alert_severity": "critical",
+  "result_url": "https://ui.honeycomb.io/...",
+  "status": "triggered"
+}
+```
+
+## Event Mapping
+
+| Status | OpsKnight Action |
+| ------ | ---------------- |
+| `triggered` | Trigger incident |
+| `resolved`  | Resolve incident |
+
+## Testing
+
+### Using cURL
+
+```bash
+curl -X POST "https://YOUR_OPSKNIGHT_URL/api/integrations/honeycomb?integrationId=YOUR_ID" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "alert_name": "Test Alert",
+    "status": "triggered",
+    "alert_severity": "critical"
+  }'
+```
+
 ## Trigger Logic
 
 OpsKnight maps Honeycomb triggers to incidents.

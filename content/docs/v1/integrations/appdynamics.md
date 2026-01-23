@@ -24,6 +24,60 @@ Receive health rule violations from AppDynamics.
 5. Payload MIME Type: `application/json`.
 6. Add this template to your **policies**.
 
+## Endpoint
+
+```
+POST /api/integrations/appdynamics?integrationId=YOUR_INTEGRATION_ID
+```
+
+## Payload Format
+
+Template your AppDynamics HTTP Request with JSON:
+
+```json
+{
+  "summary": "${latestEvent.displayName}",
+  "severity": "${latestEvent.severity}",
+  "eventType": "${latestEvent.eventType}",
+  "incidentId": "${latestEvent.id}",
+  "eventMessage": "${latestEvent.summaryMessage}",
+  "application": "${latestEvent.application.name}"
+}
+```
+
+## Event Mapping
+
+| AppDynamics Event | OpsKnight Action |
+| ----------------- | ---------------- |
+| `POLICY_OPEN`     | Trigger incident |
+| `POLICY_CLOSE`    | Resolve incident |
+| `POLICY_UPGRADED` | Trigger (Update) |
+
+## Deduplication
+
+Dedup key is generated from `appdynamics-{incidentId}`.
+
+## Testing
+
+### Using cURL
+
+```bash
+curl -X POST "https://YOUR_OPSKNIGHT_URL/api/integrations/appdynamics?integrationId=YOUR_ID" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "summary": "Health Rule Violation",
+    "severity": "ERROR",
+    "eventType": "POLICY_OPEN",
+    "incidentId": "101",
+    "application": "E-Commerce"
+  }'
+```
+
+## Troubleshooting
+
+### Variable Substitution Not Working
+Ensure you are using the correct `${variable}` syntax in the AppDynamics HTTP Template editor. Check AppDynamics documentation for the exact variable names available in your version.
+
 ## Event Logic
 
 - **Summary**: Derived from `summary`, `eventMessage`, or `eventType`.

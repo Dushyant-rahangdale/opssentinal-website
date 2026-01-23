@@ -25,6 +25,59 @@ Receive alerts from Uptime Kuma.
 6. Content Type: `application/json`.
 7. Test and Save.
 
+## Endpoint
+
+```
+POST /api/integrations/uptime-kuma?integrationId=YOUR_INTEGRATION_ID
+```
+
+## Payload Format
+
+Uptime Kuma sends:
+
+```json
+{
+  "heartbeat": {
+    "status": 0,
+    "msg": "Connection timeout",
+    "monitorID": 1
+  },
+  "monitor": {
+    "name": "My API",
+    "url": "https://api.example.com"
+  }
+}
+```
+
+## Event Mapping
+
+| Status Code | Meaning | OpsKnight Action |
+| ----------- | ------- | ---------------- |
+| `1`         | Up      | Resolve incident |
+| `0`         | Down    | Trigger incident |
+
+## Deduplication
+
+Dedup key is generated from `uptime-kuma-{monitorID}`.
+
+## Testing
+
+### Using Uptime Kuma UI
+
+1. Go to **Settings** -> **Notifications**
+2. Click **Test** on your defined notification
+
+### Using cURL
+
+```bash
+curl -X POST "https://YOUR_OPSKNIGHT_URL/api/integrations/uptime-kuma?integrationId=YOUR_ID" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "heartbeat": { "status": 0, "msg": "Test Down", "monitorID": 99 },
+    "monitor": { "name": "Test Monitor" }
+  }'
+```
+
 ## Status Logic
 
 OpsKnight translates status codes:
