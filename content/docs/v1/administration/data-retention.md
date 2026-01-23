@@ -1,78 +1,312 @@
 ---
 order: 5
+title: Data Retention
+description: Manage data storage and automatic cleanup policies
 ---
 
 # Data Retention
 
-Manage data storage and automatic cleanup policies.
+Data retention policies control how long OpsKnight stores historical data. Configure these settings to balance storage costs, performance, and compliance requirements.
+
+---
 
 ## Overview
 
 Retention policies help:
 
-- Reduce storage costs
-- Improve query performance
-- Meet compliance requirements
+- **Reduce storage costs** — Automatically remove old data
+- **Improve performance** — Smaller datasets mean faster queries
+- **Meet compliance** — Retain data for required periods
+- **Protect privacy** — Remove data after it's no longer needed
 
-## Configure Retention
-
-1. Go to **Settings → System → Data Retention**
-2. Set retention periods
-3. Save changes
+---
 
 ## Retention Settings
 
-| Data Type            | Default  | Recommended |
-| -------------------- | -------- | ----------- |
-| Resolved Incidents   | 90 days  | 90-365 days |
-| Event Logs           | 30 days  | 30-90 days  |
-| Notification History | 30 days  | 30-60 days  |
-| Audit Logs           | 365 days | 365+ days   |
+**Location**: **Settings** → **System** → **Data Retention**
 
-## How Cleanup Works
+**Requirements**: Admin role
 
-The cleanup job runs automatically:
+| Data Type | Setting | Default | Description |
+| --------- | ------- | ------- | ----------- |
+| **Incidents** | `incidentRetentionDays` | 730 (2 years) | Resolved incident records |
+| **Alerts** | `alertRetentionDays` | 365 (1 year) | Raw alert events |
+| **Logs** | `logRetentionDays` | 90 days | Application log entries |
+| **Metrics** | `metricsRetentionDays` | 365 (1 year) | Pre-aggregated metric rollups |
+| **Real-time Window** | `realTimeWindowDays` | 90 days | Period for real-time analytics queries |
 
-- **Frequency**: Daily (via internal cron)
-- **Time**: Off-peak hours
-- **Method**: Soft delete, then purge
+---
 
-### Cleanup Process
+## Presets
 
-1. Identify data older than retention period
-2. Mark for deletion
-3. Delete in batches
-4. Log cleanup results
+OpsKnight provides preconfigured presets for common use cases:
 
-## Manual Cleanup
+### Minimal (90 days)
 
-Force immediate cleanup:
+| Setting | Value |
+| ------- | ----- |
+| Incidents | 90 days |
+| Alerts | 30 days |
+| Logs | 14 days |
+| Metrics | 90 days |
+| Real-time Window | 30 days |
+
+**Best for**: Development environments, cost-sensitive deployments
+
+### Standard (1 year)
+
+| Setting | Value |
+| ------- | ----- |
+| Incidents | 365 days |
+| Alerts | 180 days |
+| Logs | 30 days |
+| Metrics | 365 days |
+| Real-time Window | 60 days |
+
+**Best for**: Most production environments
+
+### Extended (2 years)
+
+| Setting | Value |
+| ------- | ----- |
+| Incidents | 730 days |
+| Alerts | 365 days |
+| Logs | 90 days |
+| Metrics | 730 days |
+| Real-time Window | 90 days |
+
+**Best for**: Teams needing longer historical data
+
+### Enterprise (5 years)
+
+| Setting | Value |
+| ------- | ----- |
+| Incidents | 1825 days |
+| Alerts | 730 days |
+| Logs | 180 days |
+| Metrics | 1825 days |
+| Real-time Window | 90 days |
+
+**Best for**: Enterprise with extended retention needs
+
+### Compliance (7 years)
+
+| Setting | Value |
+| ------- | ----- |
+| Incidents | 2555 days |
+| Alerts | 1825 days |
+| Logs | 365 days |
+| Metrics | 2555 days |
+| Real-time Window | 90 days |
+
+**Best for**: Organizations with regulatory requirements (SOX, HIPAA)
+
+---
+
+## Configuring Retention
+
+### Via UI
+
+1. Go to **Settings** → **System** → **Data Retention**
+2. Select a preset or configure custom values
+3. Click **Save**
+
+### Via API
+
+**Get current settings**:
 
 ```bash
-# Via API (Admin only)
-curl -X POST https://your-ops.com/api/settings/retention/cleanup \
-  -H "Authorization: Bearer ADMIN_API_KEY" \
-  -H "X-Cron-Secret: YOUR_CRON_SECRET"
+GET /api/settings/retention
+Authorization: Bearer YOUR_API_KEY
 ```
 
-## Data Export
+**Response**:
+```json
+{
+  "policy": {
+    "incidentRetentionDays": 730,
+    "alertRetentionDays": 365,
+    "logRetentionDays": 90,
+    "metricsRetentionDays": 365,
+    "realTimeWindowDays": 90
+  },
+  "stats": {
+    "incidentCount": 1250,
+    "alertCount": 45000,
+    "logCount": 125000
+  },
+  "presets": [...]
+}
+```
 
-Before data is deleted, export if needed:
+**Update settings**:
 
-1. Go to **Analytics**
-2. Filter by date range
-3. Click **Export**
-4. Download CSV/JSON
+```bash
+PUT /api/settings/retention
+Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json
 
-## Compliance Notes
+{
+  "incidentRetentionDays": 365,
+  "alertRetentionDays": 180,
+  "logRetentionDays": 30
+}
+```
 
-- Audit logs have extended retention.
-- Export data before deletion if required for audits.
-- Use a longer retention policy for regulated workloads.
+---
+
+## Data Cleanup
+
+### Automatic Cleanup
+
+OpsKnight runs automatic cleanup based on your retention settings. Data older than the configured retention period is permanently deleted.
+
+### Manual Cleanup
+
+Trigger cleanup manually for immediate effect:
+
+1. Go to **Settings** → **System** → **Data Retention**
+2. Click **Run Cleanup**
+3. Choose **Dry Run** to preview or **Execute** to delete
+
+### Via API
+
+**Dry run** (preview what will be deleted):
+
+```bash
+POST /api/settings/retention
+Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json
+
+{
+  "dryRun": true
+}
+```
+
+**Execute cleanup**:
+
+```bash
+POST /api/settings/retention
+Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json
+
+{
+  "dryRun": false
+}
+```
+
+**Response**:
+```json
+{
+  "success": true,
+  "dryRun": false,
+  "result": {
+    "incidentsDeleted": 150,
+    "alertsDeleted": 5000,
+    "logsDeleted": 25000
+  }
+}
+```
+
+---
+
+## What Gets Deleted
+
+### Incident Data
+
+When incidents exceed retention:
+- Incident record
+- Associated alerts
+- Timeline events
+- Notes
+- Custom field values
+
+### Alert Data
+
+When alerts exceed retention:
+- Raw alert payload
+- Deduplication records
+
+### Log Data
+
+When logs exceed retention:
+- Application log entries
+- Debug information
+
+### Metric Rollups
+
+When metrics exceed retention:
+- Daily/weekly/monthly aggregations
+- Historical SLA snapshots
+
+---
+
+## Storage Statistics
+
+View current storage usage:
+
+1. Go to **Settings** → **System** → **Data Retention**
+2. See **Storage Statistics** section
+
+Statistics include:
+- Total incident count
+- Total alert count
+- Total log count
+- Data eligible for cleanup
+
+---
+
+## Compliance Considerations
+
+### GDPR
+
+- Set appropriate retention periods for personal data
+- Export data before deletion if needed
+- Document retention policies
+
+### HIPAA
+
+- Extended retention often required (7+ years)
+- Use Compliance preset as starting point
+- Ensure audit logs have sufficient retention
+
+### SOC 2
+
+- Maintain audit trails
+- Document retention procedures
+- Regular review of policies
+
+---
 
 ## Best Practices
 
-- Set retention based on regulatory needs.
-- Review retention quarterly.
-- Export critical datasets before expiry.
-- Monitor storage growth.
+### Setting Retention
+
+| Consideration | Recommendation |
+| ------------- | -------------- |
+| Compliance requirements | Check regulatory minimums first |
+| Storage costs | Balance cost vs. historical data needs |
+| Analytics needs | Keep enough for trend analysis |
+| Debugging | Short retention for logs is usually fine |
+
+### Before Reducing Retention
+
+1. **Export critical data** — Download reports before cleanup
+2. **Test with dry run** — Preview impact before executing
+3. **Communicate** — Inform team of policy changes
+
+### Real-time Window
+
+The `realTimeWindowDays` setting affects analytics performance:
+- Queries within this window use live data
+- Queries beyond use pre-aggregated rollups
+- Larger windows = slower queries but more accuracy
+- Recommended: 60-90 days for most deployments
+
+---
+
+## Related Topics
+
+- [Audit Logs](./audit-logs.md) — Audit log retention
+- [Analytics](../core-concepts/analytics.md) — Historical data analysis
+

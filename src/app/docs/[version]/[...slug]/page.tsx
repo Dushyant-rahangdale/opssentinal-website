@@ -7,7 +7,7 @@ import { ChevronRight, Clock, BookOpen } from "lucide-react";
 import { BRAND } from "@/lib/brand";
 
 export const dynamicParams = false;
-export const dynamic = "force-static";
+// export const dynamic = "force-static";
 
 export async function generateStaticParams() {
   const params = [];
