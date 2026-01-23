@@ -46,7 +46,8 @@ NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your-secret-key-here  # Generate with: openssl rand -base64 32
 
 # Optional - Configure via UI
-CRON_SECRET=your-cron-secret
+# Optional - Configure via UI
+# (No additional env vars required)
 ```
 
 > **Note:** In production, set `NEXTAUTH_URL` to your public domain (HTTPS).

@@ -208,7 +208,7 @@ helm install opsknight ./opsknight \
 | Variable | Description | Default |
 |----------|-------------|---------|
 | `ENCRYPTION_KEY` | Secrets encryption (32-byte hex) | Auto-generated |
-| `CRON_SECRET` | Job scheduler auth | Auto-generated |
+
 | `LOG_LEVEL` | Logging verbosity | `info` |
 
 ### Notification Providers

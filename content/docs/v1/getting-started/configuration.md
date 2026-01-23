@@ -26,14 +26,7 @@ This page lists the primary environment variables used by OpsKnight and how to s
 
 These are used by Docker Compose. For Kubernetes or Helm, configure your database connection in the chart values and ensure `DATABASE_URL` points to the correct host.
 
-## Scheduler (Cron)
 
-| Variable               | Description                        | Default              |
-| ---------------------- | ---------------------------------- | -------------------- |
-| `CRON_SECRET`          | Secret for cron job authentication | -                    |
-| `ENABLE_INTERNAL_CRON` | Enable internal scheduler          | `true` in production |
-
-If you run cron externally (Kubernetes CronJobs, CI tasks), set `ENABLE_INTERNAL_CRON=false` and provide `CRON_SECRET` to secure the endpoints.
 
 ## Email (SMTP)
 
@@ -88,9 +81,7 @@ DATABASE_URL=postgresql://opsknight:secure_password@localhost:5432/opsknight_db
 NEXTAUTH_URL=https://ops.yourcompany.com
 NEXTAUTH_SECRET=your-32-char-secret-here
 
-# Cron
-CRON_SECRET=your-cron-secret
-ENABLE_INTERNAL_CRON=true
+
 
 # Email (optional - configure via UI)
 # SMTP_HOST=smtp.example.com

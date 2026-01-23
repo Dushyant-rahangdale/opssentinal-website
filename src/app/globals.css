@@ -653,6 +653,15 @@ h4 {
   color: #e2e8f0;
 }
 
+/* Docs images: keep high quality but constrained to doc-friendly width */
+.docs-content img {
+  max-width: 420px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.25rem auto;
+}
+
 .docs-markdown :where(h2) {
   margin-top: 2.25rem;
   padding-left: 0.75rem;

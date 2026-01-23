@@ -2,111 +2,79 @@
 order: 2
 ---
 
-# Settings Component Architecture
+# Settings Architecture
 
-This document describes the component architecture for the OpsKnight settings section.
+## Entry Points
 
-## Overview
+Settings pages live under `src/app/(app)/settings` and are grouped by area:
 
-The settings section was refactored to improve maintainability and type safety by extracting notification provider configuration into focused, reusable components.
+- `/settings` (overview)
+- `/settings/profile`
+- `/settings/security`
+- `/settings/notifications`
+- `/settings/status-page`
+- `/settings/system/*`
+- `/settings/integrations/*`
+- `/settings/api-keys`
 
-## Component Structure
+Navigation is defined in `src/components/settings/navConfig.ts` and rendered by the settings
+layout shell.
+
+---
+
+## Layout & Shell Components
+
+Core layout components:
 
 ```
 src/components/settings/
-├── NotificationProviderSettings.tsx   # Main settings orchestrator
-├── SmsProviderSettings.tsx            # SMS config (Twilio/AWS SNS)
-├── PushProviderSettings.tsx           # Push config (Firebase/OneSignal)
-├── WhatsappProviderSettings.tsx       # WhatsApp Business API config
-├── ProviderCard.tsx                   # System notification provider card
-├── SystemNotificationSettings.tsx     # System admin notification settings
-└── navConfig.ts                       # Navigation configuration
+├── SettingsShell.tsx
+├── SettingsLayoutShell.tsx
+├── SettingsPage.tsx
+├── SettingsPageHeader.tsx
+├── SettingsSectionCard.tsx
+├── SettingsHeader.tsx
+├── SettingsSearch.tsx
+└── SettingsEmptyState.tsx
 ```
 
-## Key Components
+These components provide consistent layout, navigation, and section styling across settings
+pages.
 
-### NotificationProviderSettings
+---
 
-Main component that orchestrates SMS, Push, and WhatsApp provider configuration.
+## Notification Providers
 
-**Location:** `/settings/notifications`
+Admin-only provider configuration:
 
-**Uses:**
+- Page: `src/app/(app)/settings/notifications/page.tsx`
+- Core UI: `src/components/settings/SystemNotificationSettings.tsx`
+- Supporting components: `ProviderCard`, `NotificationProviderTabs`,
+  `SmsProviderSettings`, `WhatsappProviderSettings`
 
-- `SmsProviderSettings`
-- `PushProviderSettings`
-- `WhatsappProviderSettings`
+Provider support is grounded in code:
 
-### SmsProviderSettings
+- **Email**: Resend, SendGrid, SMTP, SES (`src/lib/notification-providers.ts`)
+- **SMS**: Twilio or AWS SNS (`src/lib/sms.ts`)
+- **Push**: Web Push (`src/lib/push.ts`)
+- **WhatsApp**: Twilio (`src/lib/whatsapp.ts`)
 
-Configures SMS notification providers.
+---
 
-**Providers:** Twilio, AWS SNS
+## System & Security Settings
 
-**Props:**
+Key system settings components:
 
-```typescript
-interface SmsProviderSettingsProps {
-  enabled: boolean;
-  provider: 'twilio' | 'aws-sns';
-  twilioAccountSid: string;
-  twilioAuthToken: string;
-  twilioFromNumber: string;
-  awsRegion: string;
-  awsAccessKeyId: string;
-  awsSecretAccessKey: string;
-  onEnabledChange: (enabled: boolean) => void;
-  onProviderChange: (provider: SmsProvider) => void;
-  // ... change handlers
-  onTestSms: () => Promise<void>;
-  isPending: boolean;
-}
-```
+- `RetentionPolicySettings` (data retention policy)
+- `AppUrlSettings` (base URL for links)
+- `EncryptionKeyForm` (encryption settings)
+- `RoleMappingEditor` / `SsoSettingsForm` (OIDC / SSO configuration)
 
-### PushProviderSettings
+Most settings pages use server actions defined in:
 
-Configures push notification providers.
+- `src/app/(app)/settings/actions.ts`
+- `src/app/(app)/settings/system/actions.ts`
+- `src/app/(app)/settings/security/actions.ts`
 
-**Providers:** Firebase Cloud Messaging, OneSignal
+Access control is enforced via RBAC helpers in `src/lib/rbac.ts`.
 
-### WhatsappProviderSettings
-
-Configures WhatsApp Business API via Twilio.
-
-### ProviderCard
-
-Reusable card component for system notification provider configuration.
-
-**Used by:** `SystemNotificationSettings`
-
-## Type Definitions
-
-All types are defined in `src/types/notification-types.ts`:
-
-- `SmsProvider`, `PushProvider`, `EmailProvider` - Union types
-- `SmsSettings`, `PushSettings`, `WhatsappSettings` - Settings interfaces
-- `ProviderRecord`, `ProviderConfigSchema` - System provider types
-
-## Testing
-
-Unit tests are located in `tests/components/settings/`:
-
-| Test File                         | Tests |
-| --------------------------------- | ----- |
-| SmsProviderSettings.test.tsx      | 10    |
-| PushProviderSettings.test.tsx     | 8     |
-| WhatsappProviderSettings.test.tsx | 6     |
-
-Run tests with:
-
-```bash
-npm run test:run -- tests/components/settings
-```
-
-## Adding New Providers
-
-1. Add provider type to `notification-types.ts`
-2. Add configuration fields to component
-3. Update build helper function
-4. Add to providerConfigs in SystemNotificationSettings
-5. Write tests
