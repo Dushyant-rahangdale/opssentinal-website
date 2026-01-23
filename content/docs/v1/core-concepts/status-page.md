@@ -415,7 +415,7 @@ Use in requests:
 Authorization: Bearer <token>
 ```
 
-### Rate Limiting
+### API Rate Limiting
 
 | Setting | Default | Description |
 | ------- | ------- | ----------- |
