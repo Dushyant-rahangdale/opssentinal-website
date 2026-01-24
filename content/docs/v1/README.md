@@ -6,14 +6,14 @@ description: The complete guide to mastering incident management with OpsKnight
 
 # OpsKnight Documentation
 
-Welcome to OpsKnight — the open-source incident management platform built for modern DevOps and SRE teams. This documentation will guide you from initial setup to advanced configuration, helping you build a world-class incident response capability.
+Welcome to OpsKnight — the open-source incident management platform built for modern DevOps and SRE teams. This documentation will guide you from initial setup to advanced configuration, helping you build a reliable incident response workflow.
 
-![OpsKnight mobile PWA dashboard](/mobile-dashboard.png)
+![OpsKnight Command Center dashboard](/dashboard-command-center-1200.jpg)
 
-**Mobile PWA + Push notifications**
-- Install OpsKnight on iOS/Android as a PWA (no app store wait)
-- Receive push notifications with incident context
-- Take action from anywhere, instantly
+**Command Center overview**
+- Track incident lifecycle and service health in one view
+- Surface escalations, acknowledgements, and ownership fast
+- Keep teams aligned with a shared operational picture
 
 ---
 
