@@ -16,7 +16,7 @@ function rehypeDocImagePaths(options: RenderOptions) {
   const basePath = options.imageBasePath?.replace(/\/$/, "");
   if (!basePath) return () => {};
   return (tree: unknown) => {
-    visit(tree, "element", (node: { tagName?: string; properties?: Record<string, unknown> }) => {
+    visit(tree as any, "element", (node: { tagName?: string; properties?: Record<string, unknown> }) => {
       if (node.tagName !== "img") return;
       const src = node.properties?.src;
       if (typeof src !== "string") return;
