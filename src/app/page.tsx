@@ -4,7 +4,6 @@ import { Features } from "@/components/features/Features";
 import { Stats } from "@/components/stats/Stats";
 import { Integrations } from "@/components/integrations/Integrations";
 import { Comparison } from "@/components/comparison/Comparison";
-import { Testimonials } from "@/components/testimonials/Testimonials";
 import { SocialProof } from "@/components/social-proof/SocialProof";
 import { Pricing } from "@/components/pricing/Pricing";
 import { CTA } from "@/components/cta/CTA";

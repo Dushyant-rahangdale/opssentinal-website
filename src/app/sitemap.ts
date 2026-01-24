@@ -3,6 +3,8 @@ import { BRAND } from "@/lib/brand";
 import { DOC_VERSIONS } from "@/lib/docs/versions";
 import { getAllDocSlugs } from "@/lib/docs/content";
 
+export const dynamic = "force-static";
+
 const baseUrl = `https://${BRAND.domain}`;
 
 export default function sitemap(): MetadataRoute.Sitemap {

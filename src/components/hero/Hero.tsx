@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { Github, ArrowRight, Activity, Shield, Zap, Bell, Clock, CheckCircle, Star, Users, Code2 } from "lucide-react";
+import { ArrowRight, Activity, Shield, Zap, Clock, Code2 } from "lucide-react";
 import { AnimatedBackground } from "./AnimatedBackground";
 import { BRAND } from "@/lib/brand";
 

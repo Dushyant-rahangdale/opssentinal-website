@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   applicationName: BRAND.name,
   creator: BRAND.authors?.[0]?.name,
   publisher: BRAND.name,
-  authors: BRAND.authors,
+  authors: BRAND.authors ? BRAND.authors.map(author => ({ ...author })) : undefined,
   category: "Technology",
   robots: {
     index: true,
