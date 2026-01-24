@@ -22,6 +22,21 @@ This section takes you from zero to a running incident management system. By the
 
 ---
 
+## Mobile PWA + Push Notifications
+
+OpsKnight works great on mobile as a Progressive Web App (PWA), so on-call responders can act fast from anywhere.
+
+![OpsKnight mobile dashboard](/mobile-dashboard.png)
+
+**Why enable it early:**
+- Install to iOS/Android home screen with full-screen UX
+- Receive push notifications with incident context
+- Acknowledge, escalate, and resolve without a laptop
+
+Follow the [Mobile Setup guide](../mobile/setup) to enable push notifications and add the PWA to your device.
+
+---
+
 ## What You'll Learn
 
 | Guide | What You'll Accomplish |
