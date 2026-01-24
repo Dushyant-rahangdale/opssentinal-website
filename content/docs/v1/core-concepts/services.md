@@ -8,7 +8,7 @@ description: Centralized service registry for health monitoring, ownership, and 
 
 Services are the foundation of OpsKnight's incident management model. They represent the components of your infrastructure — APIs, databases, microservices, and applications — that can experience incidents. Every incident is linked to a service, enabling clear ownership, proper routing, and meaningful analytics.
 
-![Service Directory Overview](/service-directory.png)
+![Service Directory Overview](../assets/service-directory.png)
 
 ---
 

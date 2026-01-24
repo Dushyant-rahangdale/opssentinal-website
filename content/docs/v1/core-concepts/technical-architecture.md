@@ -12,7 +12,7 @@ OpsKnight is designed as a **cloud-native, event-driven platform** built on the 
 
 The following diagram details the **System Logic Flow**, mapping exactly how data moves through the ingestion pipeline, the database, and the asynchronous reliability engine.
 
-![OpsKnight Data Flow Architecture](/assets/images/opsknight-system-flow.png)
+![OpsKnight Data Flow Architecture](../assets/images/opsknight-system-flow.png)
 
 ## Core Subsystems
 
@@ -46,4 +46,4 @@ The frontend is a **Progressive Web App** built with Next.js App Router.
 
 ## Data Schema (Simplified)
 
-![OpsKnight Database Schema](/assets/images/opsknight-er-diagram.png)
+![OpsKnight Database Schema](../assets/images/opsknight-er-diagram.png)

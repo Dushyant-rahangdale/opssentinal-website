@@ -8,7 +8,7 @@ description: Manage user accounts, roles, permissions, and notification preferen
 
 Users are the people who interact with OpsKnight — from responders handling incidents to administrators managing the platform. This guide covers user management, roles, permissions, and personal settings.
 
-![Users management](/users-page.png)
+![Users management](../assets/users-page.png)
 
 ---
 

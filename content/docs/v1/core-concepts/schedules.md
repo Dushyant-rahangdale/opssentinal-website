@@ -8,7 +8,7 @@ description: Build flexible rotation schedules with layers, overrides, and timez
 
 On-call schedules define who is responsible for responding to incidents during specific time periods. They're the backbone of reliable incident response, ensuring there's always someone available to help.
 
-![On-call schedule overview](/schedule-main.png)
+![On-call schedule overview](../assets/schedule-main.png)
 
 ---
 
@@ -74,7 +74,7 @@ An override is a temporary change to the normal rotation, used for:
 3. Click **Create**
 
 <!-- placeholder:create-schedule -->
-![Create schedule](/schedule-create.png)
+![Create schedule](../assets/schedule-create.png)
 
 ### Step 3: Add a Layer
 1. Click **Add Layer**
@@ -202,7 +202,7 @@ Overrides let you make temporary changes without modifying the base rotation.
    - **Replaces** (optional): Whose shift is being covered
 
 <!-- placeholder:create-override -->
-![Create override](/schedule-override.png)
+![Create override](../assets/schedule-override.png)
 
 ### Common Override Scenarios
 

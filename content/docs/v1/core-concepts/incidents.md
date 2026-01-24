@@ -11,7 +11,7 @@ The **Incident List** is the tactical workspace for responders.
 ### Why is this needed?
 Alerts are typically noisy and raw; Incidents represent the actual "Work" to be done. This page turns chaotic noise into a structured queue. It ensures nothing slips through the cracks by enforcing **Assignment** (Who is fixing it?) and **SLAs** (When must it be fixed?).
 
-![Incident List Interface](/incident-list-v2.png)
+![Incident List Interface](../assets/incident-list-v2.png)
 
 ## 1. The Interface at a Glance
 
@@ -52,7 +52,7 @@ The filter bar allows for complex querying of the incident database.
 
 Manage "Alert Storms" effectively with the sticky command bar.
 
-![Bulk Actions Bar](/bulk-actions.png)
+![Bulk Actions Bar](../assets/bulk-actions.png)
 
 ### Selection Logic
 *   **Smart Hints**: The bar analyzes your selection and displays hints like *"Selected contains SUPPRESSED"* if you've accidentally grabbed hidden items.
@@ -86,7 +86,7 @@ You don't always need to open the full details page.
     *   **Entire Teams** (Search by team name)
 *   **Status Toggles**: Use the "meatball" menu (`...`) on the right of any row to quickly **Resolve**, **Snooze**, or **Ack** that single item.
 
-    ![Incident Actions Menu](/incident-actions-menu.png)
+    ![Incident Actions Menu](../assets/incident-actions-menu.png)
 
 ---
 
